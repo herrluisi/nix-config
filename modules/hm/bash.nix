@@ -8,13 +8,8 @@
     bash = {
       enable = true;
       bashrcExtra = ''
-        PS1='\[\]\[\][\u@\h:\W]\$ \[\] '
-        HISTSIZE=9999999cc
-
-        function v6prefix {
-          v=$(cat /dev/urandom | tr -dc a-f0-9 | fold -w16 | head -n1)
-          echo ''${v:0:4}:''${v:4:4}:''${v:8:4}:''${v:12:4}
-        }
+        PS1='\[^[[1m\]\[^[[32m\][\u@\h:\W]\$ \[^[(B^[[m\]'
+        HISTSIZE=9999999
 
         function set_volume {
           if [ $# -eq 1 ]; then
@@ -25,39 +20,6 @@
             fi
           fi
         }
-
-        export SSH_AUTH_SOCK="$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)"
-
-        function mnt {
-          # $1 is remote host
-          # $2 is remote path
-          # $3 is local path (defaults to ./data)
-
-          if [ $# -lt 2 ]; then
-            echo "missing args"
-            return
-          fi
-
-          HOST="''${1}"
-          RPATH="''${2}"
-          LPATH="''${3:-./data}"
-
-          echo "mounting cryfs://''${HOST}:''${RPATH} on ''${LPATH} ..."
-
-          # ensure mountpoints for sshfs and cryfs exist
-          mkdir -p ./.enc ''${LPATH}
-
-          ${lib.getExe pkgs.sshfs} ''${HOST}:''${RPATH} ./.enc
-          ${lib.getExe' pkgs.cryfs "cryfs"} ./.enc ''${LPATH}
-
-          # wait for enter to unmount encrypted remote filesystem
-          read -p "Press ENTER to unmount..."
-
-          ${lib.getExe' pkgs.cryfs "cryfs-unmount"} ''${LPATH}
-          umount ./.enc
-          rm -r ''${LPATH} ./.enc
-        }
-
       '';
       shellAliases =
         let

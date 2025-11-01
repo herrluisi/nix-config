@@ -43,7 +43,9 @@
   ];
 
   # File Manager and dconf for all apps
-  services.gvfs.enable = true;
-  services.devmon.enable = true;
+  services = {
+    gvfs.enable = true;
+    devmon.enable = true;
+  };
   programs.dconf.enable = true;
 }

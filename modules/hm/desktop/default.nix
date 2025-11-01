@@ -47,4 +47,6 @@ in
       defaultApplications = config;
     };
   };
+
+  systemd.user.startServices = true;
 }

@@ -26,6 +26,7 @@ let
     + builtins.substring 20 12 hash;
 in
 {
+  # TODO migrate to nix module: networking.networkmanager.ensureProfiles.profiles."${wifiIdentifier}"
   sops = {
     secrets = {
       "${wifiSsidSops}".sopsFile = ../../wifi-secrets.yaml;

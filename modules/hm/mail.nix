@@ -18,10 +18,6 @@
         port = 465;
         tls.enable = true;
       };
-      gpg = {
-        # Make sure your gpg key is imported in thunderbird opengpg manager...
-        key = "...";
-      };
       signature = {
         showSignature = "append";
         text = ''

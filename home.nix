@@ -1,20 +1,6 @@
 {
   imports = [
-    # Essential tools
-    ./modules/hm/bash.nix
-    ./modules/hm/git.nix
-    ./modules/hm/gpg.nix
-    ./modules/hm/mail.nix
-
-    # Desktop environment
-    ./modules/hm/desktop/mimetypes.nix
-    ./modules/hm/desktop/autostart.nix
-
-    ./modules/hm/packages/default.nix
-
-    # Software configuration
-    ./modules/hm/browser.nix
-
+    ./modules/hm
   ];
 
   home.username = "uisl";
