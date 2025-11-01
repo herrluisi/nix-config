@@ -8,56 +8,50 @@
   wifiPskSops,
   ...
 }:
-let
-  # Use name to generate string in uuid format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
-  mkUuid =
-    name:
-    let
-      hash = builtins.hashString "md5" name;
-    in
-    builtins.substring 0 8 hash
-    + "-"
-    + builtins.substring 8 4 hash
-    + "-"
-    + builtins.substring 12 4 hash
-    + "-"
-    + builtins.substring 16 4 hash
-    + "-"
-    + builtins.substring 20 12 hash;
-in
 {
-  # TODO migrate to nix module: networking.networkmanager.ensureProfiles.profiles."${wifiIdentifier}"
-  sops = {
+  sops.secrets = {
+    "${wifiSsidSops}".sopsFile = ../../wifi-secrets.yaml;
+    "${wifiPskSops}".sopsFile = ../../wifi-secrets.yaml;
+  };
+
+  networking.networkmanager.ensureProfiles = {
     secrets = {
-      "${wifiSsidSops}".sopsFile = ../../wifi-secrets.yaml;
-      "${wifiPskSops}".sopsFile = ../../wifi-secrets.yaml;
+      entries = [
+        {
+          matchId = wifiIdentifier;
+          matchType = "connection";
+          matchSetting = "802-11-wireless";
+          key = "ssid";
+          file = config.sops.secrets."${wifiSsidSops}".path;
+        }
+        {
+          matchId = wifiIdentifier;
+          matchType = "connection";
+          matchSetting = "802-11-wireless-security";
+          key = "psk";
+          file = config.sops.secrets."${wifiPskSops}".path;
+        }
+      ];
     };
-    templates."network-manager/${wifiIdentifier}.nmconnection" = {
-      path = "/etc/NetworkManager/system-connections/${wifiIdentifier}.nmconnection";
-      content = ''
-        [connection]
-        id=${config.sops.placeholder."${wifiSsidSops}"}
-        uuid=${mkUuid wifiIdentifier}
-        type=wifi
-
-        [wifi]
-        mode=infrastructure
-        ssid=${config.sops.placeholder."${wifiSsidSops}"}
-
-        [wifi-security]
-        auth-alg=open
-        key-mgmt=wpa-psk
-        psk=${config.sops.placeholder."${wifiPskSops}"}
-
-        [ipv4]
-        method=auto
-
-        [ipv6]
-        addr-gen-mode=default
-        method=auto
-
-        [proxy]
-      '';
+    profiles."${wifiIdentifier}" = {
+      connection = {
+        id = wifiIdentifier;
+        type = "wifi";
+      };
+      wifi = {
+        mode = "infrastructure";
+      };
+      wifi-security = {
+        auth-alg = "open";
+        key-mgmt = "wpa-psk";
+      };
+      ipv4 = {
+        method = "auto";
+      };
+      ipv6 = {
+        method = "auto";
+        addr-gen-mode = "default";
+      };
     };
   };
 }
