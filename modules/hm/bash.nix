@@ -8,7 +8,7 @@
     bash = {
       enable = true;
       bashrcExtra = ''
-        PS1='\[$(tput setaf 208)\][\u:\W]\\$\[$(tput sgr0)\] '
+        PS1='\[$(tput setaf 208)\][\u:\w]\\$\[$(tput sgr0)\] '
         HISTSIZE=9999999999
 
         function set_volume {
