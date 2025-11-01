@@ -1,19 +1,27 @@
-{ pkgs-2505, pkgs, lib, ... }:
 {
-  home.packages = with pkgs-2505; [
-    jetbrains.webstorm
-    jetbrains.pycharm-professional
-    jetbrains.idea-ultimate
-    jetbrains.datagrip
-    jetbrains-mono
-    jetbrains.rust-rover
-    android-studio
-  ] ++ (with pkgs; [
-    marksman # markdown
-    yaml-language-server
-    nginx-language-server
-    bash-language-server
-  ]);
+  pkgs-2505,
+  pkgs,
+  lib,
+  ...
+}:
+{
+  home.packages =
+    with pkgs-2505;
+    [
+      jetbrains.webstorm
+      jetbrains.pycharm-professional
+      jetbrains.idea-ultimate
+      jetbrains.datagrip
+      jetbrains-mono
+      jetbrains.rust-rover
+      android-studio
+    ]
+    ++ (with pkgs; [
+      marksman # markdown
+      yaml-language-server
+      nginx-language-server
+      bash-language-server
+    ]);
 
   programs.vscode = {
     enable = true;
@@ -36,6 +44,6 @@
         bbenoist.nix
         jnoortheen.nix-ide
       ];
-    };  
+    };
   };
 }

@@ -13,12 +13,11 @@
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
       { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
     ];
-    package = pkgs.vivaldi.overrideAttrs
-      (oldAttrs: {
-        dontWrapQtApps = false;
-        dontPatchELF = true;
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.kdePackages.wrapQtAppsHook];
-      });
+    package = pkgs.vivaldi.overrideAttrs (oldAttrs: {
+      dontWrapQtApps = false;
+      dontPatchELF = true;
+      nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
+    });
   };
 
   programs.firefox = {

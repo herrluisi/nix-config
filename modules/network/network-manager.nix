@@ -10,7 +10,7 @@
   };
 
   # nm-connection-editor
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
     pkgs.networkmanagerapplet
     networkmanager-openvpn
   ];

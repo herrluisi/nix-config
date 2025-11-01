@@ -9,6 +9,6 @@
     yed
     gnome-text-editor
     ocrmypdf
-    tesseract4  # for ocrmypdf
+    tesseract4 # for ocrmypdf
   ];
 }

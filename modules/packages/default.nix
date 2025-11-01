@@ -18,7 +18,7 @@
     fd
     neofetch
     dig
-    nmap 
+    nmap
     xorg.xkill
 
     e2fsprogs # mkfs
