@@ -8,8 +8,8 @@
     bash = {
       enable = true;
       bashrcExtra = ''
-        PS1='\[^[[1m\]\[^[[32m\][\u@\h:\W]\$ \[^[(B^[[m\]'
-        HISTSIZE=9999999
+        PS1='\[$(tput setaf 208)\][\u:\W]\\$\[$(tput sgr0)\] '
+        HISTSIZE=9999999999
 
         function set_volume {
           if [ $# -eq 1 ]; then

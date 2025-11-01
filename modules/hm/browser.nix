@@ -5,13 +5,7 @@
     extensions = [
       { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
-      { id = "gcknhkkoolaabfmlnjonogaaifnjlfnp"; } # Foxy Proxy
-      { id = "dhdgffkkebhmkfjojejmpbldmpobfkfo"; } # Tampermonkey
-      { id = "gppongmhjkpfnbhagpmjfkannfbllamg"; } # Wappalyzer
-      { id = "pfdhoblngboilpfeibdedpjgfnlcodoo"; } # Simple Websocket Client
-      { id = "djflhoibgkdhkhhcedjiklpkjnoahfmg"; } # User-Agent Switcher
-      { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
+      { id = "eljmjmgjkbmpmfljlmklcfineebidmlo"; } # Psono
     ];
     package = pkgs.vivaldi.overrideAttrs (oldAttrs: {
       dontWrapQtApps = false;
@@ -23,7 +17,6 @@
   programs.firefox = {
     enable = true;
     policies = {
-      # see https://github.com/mozilla/policy-templates/blob/master/linux/policies.json
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
@@ -65,11 +58,6 @@
           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/download-video-and-flash/latest.xpi";
           installation_mode = "force_installed";
         };
-        # FoxyProxy
-        "foxyproxy@eric.h.jung" = {
-          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/foxyproxy-standard/latest.xpi";
-          installation_mode = "force_installed";
-        };
         # Privacy Badger
         "jid1-MnnxcxisBPnSXQ@jetpack" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
@@ -80,29 +68,9 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi";
           installation_mode = "force_installed";
         };
-        # Tamper Data
-        "{2bd18ca8-5dd7-4311-a777-02ed29663496}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tamper-data-for-ff-quantum/latest.xpi";
-          installation_mode = "force_installed";
-        };
         # Skip Redirect
         "skipredirect@sblask" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # User-Agent Switcher
-        "{75afe46a-7a50-4c6b-b866-c43a1075b071}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/user-agent-switcher-revived/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # HackTools
-        "{f1423c11-a4e2-4709-a0f8-6d6a68c83d08}" = {
-          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/hacktools/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # Bitwarden
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
           installation_mode = "force_installed";
         };
         # Silk - Privacy Pass Client
