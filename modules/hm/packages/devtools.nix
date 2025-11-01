@@ -11,5 +11,6 @@
     insomnia
     mkcert
     terminator
+    sops
   ];
 }
