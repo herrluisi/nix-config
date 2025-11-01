@@ -16,6 +16,10 @@
     killall
     openssl
     fd
+    neofetch
+    dig
+    nmap 
+    xorg.xkill
 
     e2fsprogs # mkfs
 
@@ -24,10 +28,22 @@
     lshw
 
     unzip
+    rclone
 
     wget
     curl
     whois
     dnsutils
+
+    # KDE needed packages
+    kdePackages.kcmutils
+    kdePackages.qtwebengine
+    libsForQt5.kdbusaddons
+
   ];
+
+  # File Manager and dconf for all apps
+  services.gvfs.enable = true;
+  services.devmon.enable = true;
+  programs.dconf.enable = true;
 }

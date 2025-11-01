@@ -1,9 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    mpv
-    flameshot
-    obs-studio
-    yt-dlp
+    openconnect  # VPN Connection for THM
+    openvpn
+
   ];
 }

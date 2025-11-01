@@ -53,7 +53,7 @@
         };
     in
     {
-      nixosConfigurations.uisl = lib.nixosSystem {
+      nixosConfigurations.uisl = lib.nixosSystem rec {
         inherit system;
         pkgs = mkPkgs { inherit system; };
         specialArgs = inputs // {
@@ -61,7 +61,7 @@
             inherit system;
             repo = nixpkgs-2505;
           };
-          libF = import ./lib/default.nix { inherit pkgs lib; };
+          libF = import ./lib/default.nix;
         };
         modules = [
           ./hosts/uisl/configuration.nix
@@ -87,6 +87,12 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.uisl = import ./home.nix;
+              extraSpecialArgs = inputs // {
+                pkgs-2505 = mkPkgs {
+                  inherit system;
+                  repo = nixpkgs-2505;
+                };
+              };
             };
           }
           ./modules/nvidia.nix

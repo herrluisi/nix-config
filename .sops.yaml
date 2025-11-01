@@ -1,0 +1,15 @@
+keys:
+  - &admin_uisl 8A07C1FC53085B285661AF54F2C298803429EA24
+  - &nitro5 age1nd5pn9lhfazkpeuz0qaseyqrtpdysvfzan07r8t39rh75834kuyqpgfedz
+
+creation_rules:
+  - path_regex: wifi-secrets.yaml
+    key_groups:
+      - pgp: [ *admin_uisl ]
+        age: [ *nitro5 ]
+
+  - path_regex: hosts/uisl/secrets.yaml
+    key_groups:
+      - pgp: [ *admin_uisl ]
+        age: [ *nitro5 ]
+

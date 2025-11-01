@@ -10,7 +10,10 @@
   };
 
   # nm-connection-editor
-  environment.systemPackages = [ pkgs.networkmanagerapplet ];
+  environment.systemPackages = with pkgs; [ 
+    pkgs.networkmanagerapplet
+    networkmanager-openvpn
+  ];
 
   users.users.uisl.extraGroups = [ "networkmanager" ];
 }

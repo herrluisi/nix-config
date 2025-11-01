@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.chromium = {
     enable = true;
@@ -12,7 +13,12 @@
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
       { id = "pkehgijcmpdhfbdbbnkijodmdjhbjlgp"; } # Privacy Badger
     ];
-    package = pkgs.vivaldi;
+    package = pkgs.vivaldi.overrideAttrs
+      (oldAttrs: {
+        dontWrapQtApps = false;
+        dontPatchELF = true;
+        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.kdePackages.wrapQtAppsHook];
+      });
   };
 
   programs.firefox = {

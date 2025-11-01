@@ -5,6 +5,7 @@
     "uislPassword".neededForUsers = true;
   };
 
+  users.mutableUsers = false;
   users.users = {
     root = {
       hashedPasswordFile = config.sops.secrets."rootPassword".path;
@@ -12,7 +13,7 @@
     uisl = {
       isNormalUser = true;
       home = "/home/uisl";
-      description = "Luis Herr"
+      description = "Luis Herr";
       uid = 1000;
       extraGroups = [
         "wheel" # sudoer

@@ -8,7 +8,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.systemPackages = with pkgs; [
-    cudatoolkit
+    # cudatoolkit
     vulkan-tools
     vulkan-loader
   ];

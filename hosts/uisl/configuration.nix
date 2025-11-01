@@ -1,12 +1,11 @@
 {
-  pkgs,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./lanzaboote.nix
+    # ./lanzaboote.nix
   ];
 
   facter.reportPath = ./facter.json;
@@ -15,10 +14,6 @@
     defaultSopsFile = ./secrets.yaml;
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   };
-
-  environment.systemPackages = with pkgs; [
-    audit
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

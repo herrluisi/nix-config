@@ -1,6 +1,5 @@
 ## FHS builds a fully linux system without nix store. Usefull for AppImage Files who expects a /bin folder (only for sh in nixos)
 
-
 {
   buildFHSEnv,
   pkgs,

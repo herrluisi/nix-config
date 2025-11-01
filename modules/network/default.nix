@@ -1,6 +1,7 @@
 {
   imports = [
-    ./network-manager.nix
+    ./bluetooth.nix
     ./dns.nix
+    ./network-manager.nix
   ];
 }

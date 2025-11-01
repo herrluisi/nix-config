@@ -60,10 +60,10 @@
 
       '';
       shellAliases =
-        let 
+        let
           restart-desktop-path = pkgs.writeShellScript "restart-desktop.sh" "kquitapp5 plasmashell || killall plasmashell && kstart5 plasmashell";
           diffstr-path = pkgs.writeShellScript "diffstr.sh" "echo diff <( printf '%s\n' $1 ) <( printf '%s\n' $2 )";
-        in 
+        in
         {
           pwd = "pwd | xclip -selection clipboard";
           dc = "sudo docker compose";
