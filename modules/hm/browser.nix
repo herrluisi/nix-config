@@ -3,7 +3,7 @@
   programs.chromium = {
     enable = true;
     extensions = [
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Originw
       { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
       { id = "eljmjmgjkbmpmfljlmklcfineebidmlo"; } # Psono
     ];

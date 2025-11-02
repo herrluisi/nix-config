@@ -18,5 +18,7 @@
       [
         "hotspot"
         "zuhause"
+        #"luca_wlan"
+        #"tankstelle"
       ];
 }
