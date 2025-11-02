@@ -7,6 +7,8 @@
       nextcloud-client
       nemo-with-extensions
 
+      thunderbird
+
       hunspell
     ]
     ++ (with pkgs.hunspellDicts; [
