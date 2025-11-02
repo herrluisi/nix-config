@@ -12,5 +12,8 @@
     mkcert
     terminator
     sops
+    nixfmt
+    nixfmt-tree
+    deadnix
   ];
 }
