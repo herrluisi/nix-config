@@ -4,13 +4,17 @@
     nodejs_22
     python3
     jdk21
+
     sqlite
-    appimage-run
     mariadb
+
     youtrack
     insomnia
     mkcert
+
     terminator
+    appimage-run
+
     sops
     nixfmt
     nixfmt-tree
