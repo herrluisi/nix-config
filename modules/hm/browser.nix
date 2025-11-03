@@ -1,17 +1,37 @@
 { pkgs, ... }:
+let
+  extensions = [
+    { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Originw
+    { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
+    { id = "eljmjmgjkbmpmfljlmklcfineebidmlo"; } # Psono
+  ];
+in
 {
   programs.chromium = {
     enable = true;
-    extensions = [
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Originw
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
-      { id = "eljmjmgjkbmpmfljlmklcfineebidmlo"; } # Psono
-    ];
+    inherit extensions;
+    package = pkgs.chromium;
+
+  };
+
+  programs.vivaldi = {
+    enable = true;
+    inherit extensions;
     package = pkgs.vivaldi.overrideAttrs (oldAttrs: {
       dontWrapQtApps = false;
       dontPatchELF = true;
       nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
     });
+    # extraOpts = {
+    #   "WebAppInstallForceList" = [
+    #     {
+    #       "custom_name" = "WhatsApp";
+    #       "create_desktop_shortcut" = false;
+    #       "default_launch_container" = "window";
+    #       "url" = "https://web.whatsapp.com";
+    #     }
+    #   ];
+    # };
   };
 
   programs.firefox = {
@@ -40,7 +60,7 @@
         StartPage = "homepage";
       };
 
-      # Check about:support for extension/add-on ID strings.
+      # Check about:support for extension/add-on ID strings. - Tipps: you can get the id by adding the add-on to Firefox and read the error message
       ExtensionSettings = {
         "*".installation_mode = "blocked";
         # uBlock Origin
@@ -58,24 +78,9 @@
           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/download-video-and-flash/latest.xpi";
           installation_mode = "force_installed";
         };
-        # Privacy Badger
-        "jid1-MnnxcxisBPnSXQ@jetpack" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # Wappalyzer
-        "wappalyzer@crunchlabz.com" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # Skip Redirect
-        "skipredirect@sblask" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/skip-redirect/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # Silk - Privacy Pass Client
-        "{48748554-4c01-49e8-94af-79662bf34d50}" = {
-          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/privacy-pass/latest.xpi";
+        # Psono
+        "{3dce78ca-2a07-4017-9111-998d4f826625}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/psono_pw_password_manager/latest.xpi";
           installation_mode = "force_installed";
         };
       };
