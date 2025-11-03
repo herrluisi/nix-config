@@ -22,16 +22,6 @@ in
       dontPatchELF = true;
       nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ pkgs.kdePackages.wrapQtAppsHook ];
     });
-    # extraOpts = {
-    #   "WebAppInstallForceList" = [
-    #     {
-    #       "custom_name" = "WhatsApp";
-    #       "create_desktop_shortcut" = false;
-    #       "default_launch_container" = "window";
-    #       "url" = "https://web.whatsapp.com";
-    #     }
-    #   ];
-    # };
   };
 
   programs.firefox = {
@@ -80,7 +70,7 @@ in
         };
         # Psono
         "{3dce78ca-2a07-4017-9111-998d4f826625}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/psono_pw_password_manager/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/psono-pw-password-manager/latest.xpi";
           installation_mode = "force_installed";
         };
       };
