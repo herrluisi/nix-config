@@ -5,7 +5,6 @@
       enable = true;
       # ethernet.macAddress = "random";
       # wifi.macAddress = "random";
-      dns = "systemd-resolved";
     };
   };
 

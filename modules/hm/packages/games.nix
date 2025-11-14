@@ -4,5 +4,6 @@
     prismlauncher-unwrapped
     lunar-client
     lutris
+    steam
   ];
 }

@@ -4,7 +4,7 @@
     ./bash.nix
     ./git.nix
     ./gpg.nix
-    ./mail.nix
+#    ./mail.nix
 
     # Desktop environment
     ./desktop

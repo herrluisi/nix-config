@@ -6,7 +6,6 @@
     ./boot
     ./network
     ./packages
-    ./services
   ];
 
   virtualisation = {

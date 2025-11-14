@@ -33,6 +33,10 @@ let
   };
 in
 {
+  sops.secrets.hugob_mail_pass.sopsFile = ./secrets.yaml;
+
+
+
   programs.thunderbird = {
     enable = true;
     profiles.default = {
@@ -45,28 +49,28 @@ in
     "kontakt@luisherr.de" = {
       primary = true;
       address = "kontakt@luisherr.de";
-      userName = "kontakt@luisherr.de";
+      userName = address;
       inherit (felbinger) imap smtp;
       inherit signature realName;
       thunderbird.enable = true;
     };
     "politik@luisherr.de" = {
       address = "politik@luisherr.de";
-      userName = "politik@luisherr.de";
+      userName = address;
       inherit (felbinger) imap smtp;
       inherit signature realName;
       thunderbird.enable = true;
     };
     "luis.maximilian.herr@gmail.com" = {
       address = "luis.maximilian.herr@gmail.com";
-      userName = "luis.maximilian.herr@gmail.com";
+      userName = address;
       inherit (gmail) imap smtp;
       inherit signature realName;
       thunderbird.enable = true;
     };
     "amphomoronal@gmail.com" = {
       address = "amphomoronal@gmail.com";
-      userName = "amphomoronal@gmail.com";
+      userName = address;
       inherit (gmail) imap smtp;
       inherit signature realName;
       thunderbird.enable = true;
@@ -80,3 +84,5 @@ in
     };
   };
 }
+
+      passwordCommand = "cat ${config.sops.secrets.hugob_mail_pass.path}";
