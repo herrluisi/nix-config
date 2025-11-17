@@ -5,7 +5,6 @@
     ./kde.nix
     ./android.nix
     ./documentation.nix
-    ./i3.nix
   ];
 
   environment.systemPackages = with pkgs; [
