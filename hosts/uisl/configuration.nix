@@ -1,6 +1,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disk-configuration.nix
     ./networking.nix
     # ./lanzaboote.nix
   ];

@@ -7,6 +7,10 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
@@ -24,6 +28,7 @@
       nixpkgs,
       sops-nix,
       lanzaboote,
+      disko,
       nixos-facter-modules,
       home-manager,
       nix-index-database,
