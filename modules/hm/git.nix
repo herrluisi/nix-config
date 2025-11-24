@@ -21,7 +21,11 @@
     };
   };
 
-  home.packages = with pkgs; [
-    gh
-  ];
+  # For authentication with GitHub
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper = {
+      enable = true;
+    };
+  };
 }

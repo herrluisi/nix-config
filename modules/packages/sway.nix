@@ -86,7 +86,7 @@
   };
 
   services.xserver.enable = true;
-  services.xserver.displayManager.defaultSession = "sway";
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.libinput.enable = true;
+  services.displayManager.defaultSession = "sway";
+  services.displayManager.sddm.enable = true;
+  services.libinput.enable = true;
 }
