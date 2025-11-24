@@ -15,7 +15,7 @@
             content = {
               type = "filesystem";
               format = "vfat";
-              mountpoint = "/boot/efi";
+              mountpoint = "/boot";
             };
           };
           luks = {

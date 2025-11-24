@@ -5,6 +5,8 @@
     ./git.nix
     ./gpg.nix
 #    ./mail.nix
+#    ./sway.nix
+
 
     # Desktop environment
     ./desktop

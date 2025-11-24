@@ -5,6 +5,7 @@
     ./kde.nix
     ./android.nix
     ./documentation.nix
+    ./sway.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -50,5 +51,11 @@
     gvfs.enable = true;
     devmon.enable = true;
   };
+
   programs.dconf.enable = true;
+
+  environment.sessionVariables = rec {
+    XDG_CONFIG_HOME = "\${HOME}/.config";
+    XCURSOR_SIZE = "24";
+  };
 }

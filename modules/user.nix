@@ -17,8 +17,9 @@
       uid = 1000;
       extraGroups = [
         "wheel" # sudoer
+        "video" # for sway
       ];
-
+#      password = "password";
       hashedPasswordFile = config.sops.secrets."uislPassword".path;
     };
   };

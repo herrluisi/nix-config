@@ -21,4 +21,5 @@
         #"luca_wlan"
         #"tankstelle"
       ];
+  networking.hostId = "33565494";
 }
