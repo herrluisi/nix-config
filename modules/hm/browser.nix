@@ -85,6 +85,8 @@ in
           "dom.security.https_only_mode" = true;
           "privacy.trackingprotection.enabled" = true;
           "identity.fxaccounts.enabled" = false;
+          "browser.search.openintab" = true;
+          "browser.urlbar.openintab" = true;
         };
         bookmarks = {
           force = true;
