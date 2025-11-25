@@ -47,16 +47,21 @@
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [
-      dmenu
-      swaylock
-      swayidle
-      xwayland
-      mako
-      kanshi
-      grim
-      slurp
-      wl-clipboard
-      wf-recorder
+      bemenu   # Application launcher
+      brightnessctl # Screen brightness control
+      cliphist  # Clipboard manager
+      glib      # Required for GTK application styling
+      swaylock  # Screen locking
+      swayidle  # Idle management
+      xwayland  # X11 compatibility
+      mako    # Notifications
+      kanshi  # Monitor Display Configuration
+      grim    # Screenshot tool
+      slurp   # Screenshot selection tool
+      waybar  # Status bar
+      wob     # Progress indicator
+      wl-clipboard  # Clipboard utilities
+      wf-recorder   # Screen recording
       (python3.withPackages(ps: with ps; [ i3pystatus keyring ]))
     ];
     extraSessionCommands = ''
