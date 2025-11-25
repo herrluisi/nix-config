@@ -55,7 +55,6 @@
       swayidle  # Idle management
       xwayland  # X11 compatibility
       mako    # Notifications
-      kanshi  # Monitor Display Configuration
       grim    # Screenshot tool
       slurp   # Screenshot selection tool
       waybar  # Status bar

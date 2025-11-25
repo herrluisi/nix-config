@@ -73,6 +73,11 @@ in
           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/download-video-and-flash/latest.xpi";
           installation_mode = "force_installed";
         };
+        # Open Links in new Tabs
+        "open-new-tab" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/795511/open_new_tab-1.0.xpi";
+          installation_mode = "force_installed";
+        };
       };
     };
 

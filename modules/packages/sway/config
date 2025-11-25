@@ -31,13 +31,14 @@ set $menu bemenu-run -i \
     --fn "font pango:rubik 11" \
     "$@" -m "$(swayfocused)" -p ">"
 
-bindsym $mod+space exec $menu
+bindsym alt+space exec $menu
 
 
 ### Output configuration
 
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
 output * bg /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg fill
+output eDP-1 mode 2560x1600 pos 1920 0
 #
 # Example configuration:
 #
@@ -173,7 +174,7 @@ output * bg /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg fill
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym alt+space focus mode_toggle
+    bindsym alt+shift+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -291,6 +292,36 @@ exec_always {
     gsettings set $gnome-schema font-name 'Your font name'
 }
 
+input "type:touchpad" {
+  natural_scroll enabled
+}
+
+
+bindswitch --locked --reload lid:on exec $lock && swaymsg output eDP-1 disable
+
+bindswitch --locked --reload lid:off exec swaymsg output eDP-1 enable
+
+
+### Swaylock
+
+# https://code.krister.ee/lock-screen-in-sway/
+set $lock swaylock \
+    --clock \
+    --indicator \
+    --screenshots \
+    --effect-scale 0.4 \
+    --effect-vignette 0.2:0.5 \
+    --effect-blur 4x2 \
+    --datestr "%a %e.%m.%Y" \
+    --timestr "%k:%M"
+exec swayidle -w \
+    timeout 600 $lock \
+    timeout 570 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep $lock
+
+set $lockman exec bash ~/.config/sway/lockman.sh
+bindsym alt+l exec $lockman
 
 include /etc/sway/config.d/*
 include ./config.d/*
