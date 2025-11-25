@@ -53,6 +53,11 @@ in
       # Check about:support for extension/add-on ID strings. - Tipps: you can get the id by adding the add-on to Firefox and read the error message
       ExtensionSettings = {
         "*".installation_mode = "blocked";
+        # Psono
+        "{3dce78ca-2a07-4017-9111-998d4f826625}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/psono-pw-password-manager/latest.xpi";
+          installation_mode = "force_installed";
+        };
         # uBlock Origin
         "uBlock0@raymondhill.net" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
@@ -66,11 +71,6 @@ in
         # Flash and Video Downloader
         "{adeadebb-fedc-4180-a7f4-cfdd87496551}" = {
           install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/download-video-and-flash/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        # Psono
-        "{3dce78ca-2a07-4017-9111-998d4f826625}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/psono-pw-password-manager/latest.xpi";
           installation_mode = "force_installed";
         };
       };
