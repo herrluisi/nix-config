@@ -52,6 +52,7 @@
       cliphist  # Clipboard manager
       glib      # Required for GTK application styling
       swaylock  # Screen locking
+      swaylock-effects  # Customize the sway lock screen
       swayidle  # Idle management
       xwayland  # X11 compatibility
       mako    # Notifications

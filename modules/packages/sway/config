@@ -296,7 +296,6 @@ input "type:touchpad" {
   natural_scroll enabled
 }
 
-
 bindswitch --locked --reload lid:on exec $lock && swaymsg output eDP-1 disable
 
 bindswitch --locked --reload lid:off exec swaymsg output eDP-1 enable
@@ -314,14 +313,14 @@ set $lock swaylock \
     --effect-blur 4x2 \
     --datestr "%a %e.%m.%Y" \
     --timestr "%k:%M"
+
 exec swayidle -w \
     timeout 600 $lock \
     timeout 570 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
     before-sleep $lock
 
-set $lockman exec bash ~/.config/sway/lockman.sh
-bindsym alt+l exec $lockman
+bindsym $mod+Escape exec swaylock -Ki /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg
 
 include /etc/sway/config.d/*
 include ./config.d/*
