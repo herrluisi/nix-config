@@ -3,6 +3,7 @@
     ./plymouth.nix
     ./silent-boot.nix
     ./systemd-boot.nix
+    ./logind.nix
   ];
 
   boot = {
