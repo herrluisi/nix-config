@@ -59,6 +59,7 @@
       grim    # Screenshot tool
       slurp   # Screenshot selection tool
       waybar  # Status bar
+      wdisplays  # Display configuration/arrangement tool
       wob     # Progress indicator
       wl-clipboard  # Clipboard utilities
       wf-recorder   # Screen recording
