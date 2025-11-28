@@ -1,250 +1,145 @@
 // =============================================================================
-//
-// Waybar configuration (https://hg.sr.ht/~begs/dotfiles)
-//
-// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
-//
+// Waybar configuration
 // =============================================================================
 
 {
-	// -------------------------------------------------------------------------
-	// Global configuration
-	// -------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Global configuration
+  // -------------------------------------------------------------------------
+  "height": 21,
+  "layer": "top",
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-top": 0,
+  "modules-center": [
+    "clock"
+  ],
+  "modules-left": [
+    "sway/workspaces"
+  ],
+  "modules-right": [
+    "tray",
+    "memory",
+    "cpu",
+    "bluetooth",
+    "custom/powerprofile",
+    "battery",
+    "network",
+    "pulseaudio"
+  ],
+  "spacing": 0,
 
-	"layer": "top",
-	"position": "top",
-	//"height": 18,
+  // -------------------------------------------------------------------------
+  // Sway modules
+  // -------------------------------------------------------------------------
+  "sway/workspaces": {
+    "all-outputs": false,
+    "disable-scroll": true,
+    "tooltip": false
+  },
 
-	"modules-left": [
-		"sway/mode",
-		"sway/workspaces",
-		"custom/arrow10",
-		"sway/window"
-	],
+  // -------------------------------------------------------------------------
+  // Tray module
+  // -------------------------------------------------------------------------
+  "tray": {
+    "spacing": 10,
+    "tooltip": false
+  },
 
-	//"modules-center": [
-	//	"sway/window"
-	//],
+  // -------------------------------------------------------------------------
+  // Clock module
+  // -------------------------------------------------------------------------
+  "clock": {
+    "format": "{:%a %Y-%d-%m %H:%M}",
+    "tooltip": false
+  },
 
-	"modules-right": [
-		"custom/arrow1",
-		"custom/alsa",
-		//"pulseaudio",
-		//"sndio",
-		"custom/arrow2",
-		"network",
-		"custom/arrow3",
-		"memory",
-		"custom/arrow4",
-		"cpu",
-		"custom/arrow5",
-		"temperature",
-		"custom/arrow6",
-		"sway/language",
-		"custom/arrow7",
-		"battery",
-		"custom/arrow8",
-		"tray",
-		"clock#date",
-		"custom/arrow9",
-		"clock#time"
-	],
+  // -------------------------------------------------------------------------
+  // Connections modules
+  // -------------------------------------------------------------------------
+  "bluetooth": {
+    "format": "bluetooth {status}",
+    "format-connected": "{num_connections} connection(s)",
+    "on-click": "blueman-manager",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
+  "network": {
+    "format-disconnected": "no network",
+    "format-ethernet": "ethernet up",
+    "format-wifi": "wifi up",
+    "on-click": "nm-connection-editor",
+    "tooltip": true,
+    "tooltip-format": "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}"
+  },
 
-	// -------------------------------------------------------------------------
-	// Modules
-	// -------------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Sound module
+  // -------------------------------------------------------------------------
+  "pulseaudio": {
+    "format": "🔈 {volume}%",
+    "format-muted": "disabled",
+    "on-click": "pavucontrol",
+    "scroll-step": 1
+  },
 
-	"battery": {
-		"interval": 1,
-		"states": {
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "Battery {capacity}%", // Icon: bolt
-		"format-discharging": "{icon} {capacity}%",
-		"format-icons": [
-			"L",
-			"M",
-			"H",
-		],
-		"tooltip": true
-	},
+  // -------------------------------------------------------------------------
+  // Battery module
+  // -------------------------------------------------------------------------
+  "battery": {
+    "format": "Charging {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-icons": [
+      "L",
+      "M",
+      "H"
+    ],
+    "interval": 1,
+    "states": {
+      "critical": 15,
+      "warning": 50
+    },
+    "tooltip": true
+  },
 
-	"clock#time": {
-		"interval": 10,
-		"format": "{:%H:%M}",
-		"tooltip": true
-	},
+  // -------------------------------------------------------------------------
+  // System resource modules
+  // -------------------------------------------------------------------------
+  "cpu": {
+    "format": "⯍ {usage}%",
+    "interval": 5,
+    "states": {
+      "critical": 90,
+      "warning": 70
+    },
+    "tooltip": true
+  },
+  "memory": {
+    "format": "⩩ {}%",
+    "interval": 5,
+    "states": {
+      "critical": 90,
+      "warning": 70
+    }
+  },
 
-	"clock#date": {
-		"interval": 20,
-		"format": "{:%e %b %Y}", // Icon: calendar-alt
-		//"tooltip-format": "{:%e %B %Y}"
-		"tooltip": true
-	},
-
-	"cpu": {
-		"interval": 5,
-		"tooltip": true,
-		"format": " {usage}%", // Icon: microchip
-		"states": {
-		  "warning": 70,
-		  "critical": 90
-		}
-	},
-
-	"sway/language": {
-		"format": " {}",
-		"min-length": 5,
-		"tooltip": true
-	},
-
-	"memory": {
-		"interval": 5,
-		"format": " {}%", // Icon: memory
-		"states": {
-			"warning": 70,
-			"critical": 90
-		}
-	},
-
-	"network": {
-		"interval": 5,
-		// TODO: format-icons
-		"format-wifi": "☀ {essid} ({signalStrength}%)", // Icon: wifi
-		//"format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-		"format-ethernet": " {ifname}",
-		"format-disconnected": "",
-		//"tooltip-format": "{ifname}: {ipaddr}",
-		"tooltip": true
-		//"on-click": "cmst"
-	},
-
-	"sway/mode": {
-		"format": "<span style=\"italic\"> {}</span>", // Icon: expand-arrows-alt
-		"tooltip": true
-	},
-
-	"sway/window": {
-		"format": "{}",
-		"max-length": 30,
-		"tooltip": true
-	},
-
-	"sway/workspaces": {
-		"all-outputs": false,
-		"disable-scroll": false,
-		"format": "{name}",
-		"format-icons": {
-			"1:www": "龜", // Icon: firefox-browser
-			"2:mail": "", // Icon: mail
-			"3:editor": "", // Icon: code
-			"4:terminals": "", // Icon: terminal
-			"5:portal": "", // Icon: terminal
-			"urgent": "",
-			"focused": "",
-			"default": ""
-		}
-	},
-
-	"pulseaudio": {
-		"scroll-step": 1,
-		"format": "{icon} {volume}%",
-		"format-bluetooth": "{icon} {volume}%",
-		"format-muted": "",
-		"format-icons": {
-			"headphones": "",
-			"handsfree": "",
-			"headset": "",
-			"phone": "",
-			"portable": "",
-			"car": "",
-			"default": ["", ""]
-		},
-		"on-click": "pavucontrol"
-	},
-
-	"temperature": {
-		"critical-threshold": 90,
-		"interval": 5,
-		//"format": "{icon} {temperatureC}°C",
-		"format": "{icon} {temperatureC}°C",
-		"format-icons": [
-			"", // Icon: temperature-empty
-			//"", // Icon: temperature-quarter
-			"", // Icon: temperature-half
-			//"", // Icon: temperature-three-quarters
-			""  // Icon: temperature-full
-		],
-		"tooltip": true
-	},
-
-	"custom/alsa": {
-		"exec": "amixer get Master | sed -nre 's/.*\\[off\\].*/ muted/p; s/.*\\[(.*%)\\].*/ \\1/p'",
-		"on-click": "amixer set Master toggle; pkill -x -RTMIN+11 waybar",
-		"on-scroll-up": "amixer set Master 1+; pkill -x -RTMIN+11 waybar",
-		"on-scroll-down": "amixer set Master 1-; pkill -x -RTMIN+11 waybar",
-		"signal": 11,
-		"interval": 10,
-		"tooltip": true
-	},
-
-	"sndio": {
-		"format": " {}%"
-	},
-
-	"tray": {
-		"icon-size": 21
-		//"spacing": 10
-	},
-
-	"custom/arrow1": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow2": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow3": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow4": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow5": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow6": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow7": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow8": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow9": {
-		"format": "",
-		"tooltip": true
-	},
-
-	"custom/arrow10": {
-		"format": "",
-		"tooltip": true
-	}
+  // -------------------------------------------------------------------------
+  // Custom modules
+  // -------------------------------------------------------------------------
+  "custom/powerprofile": {
+    "exec": "bash /etc/nixos/scripts/performancecycle.sh get",
+    "format": "{text}",
+    "interval": 3,
+    "on-click": "bash /etc/nixos/scripts/performancecycle.sh",
+    "return-type": "json",
+    "states": {
+      "balanced": 30,
+      "performance": 50,
+      "powersave": 10
+    },
+    "tooltip": true
+  }
 }

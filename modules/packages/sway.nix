@@ -50,6 +50,7 @@
       bemenu   # Application launcher
       brightnessctl # Screen brightness control
       cliphist  # Clipboard manager
+      kanshi    # Monitor configuration daemon
       glib      # Required for GTK application styling
       swaylock  # Screen locking
       swaylock-effects  # Customize the sway lock screen
@@ -58,11 +59,14 @@
       mako    # Notifications
       grim    # Screenshot tool
       slurp   # Screenshot selection tool
+      pavucontrol  # Volume control for PulseAudio
+      pulsemixer  # Command-line volume control for PulseAudio
       waybar  # Status bar
       wdisplays  # Display configuration/arrangement tool
       wob     # Progress indicator
       wl-clipboard  # Clipboard utilities
       wf-recorder   # Screen recording
+      wl-mirror       # Screen mirroring tool
       (python3.withPackages(ps: with ps; [ i3pystatus keyring ]))
     ];
     extraSessionCommands = ''

@@ -36,7 +36,11 @@
           ".." = "cd ..";
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
           build-system = "sudo nixos-rebuild build --flake /etc/nixos";
+          powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
         };
+      initExtra = "bash /etc/nixos/scripts/unlock.sh";
+      profileExtra = "bash /etc/nixos/scripts/unlock.sh";
+
     };
   };
 
