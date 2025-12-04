@@ -1,12 +1,12 @@
 {
-  pkgs-2505,
+  pkgs-stable,
   pkgs,
   lib,
   ...
 }:
 {
   home.packages =
-    with pkgs-2505;
+    with pkgs-stable;
     [
       jetbrains.webstorm
       jetbrains.pycharm-professional

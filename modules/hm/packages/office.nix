@@ -1,4 +1,4 @@
-{ pkgs, pkgs-2505, ... }:
+{ pkgs, pkgs-stable, ... }:
 {
   home.packages =
     with pkgs;
@@ -15,7 +15,7 @@
       en_US
       de_DE
     ])
-    ++ (with pkgs-2505; [
+    ++ (with pkgs-stable; [
       texlive.combined.scheme-full
     ]);
 }

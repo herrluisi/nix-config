@@ -129,6 +129,10 @@ output eDP-1 mode 2560x1600 pos 1920 0
 #
 # Workspaces:
 #
+    set $disp1 "BOE 0x0BC9 Unknown"
+    set $disp2 "Ancor Communications Inc BE24A G1LMQS040301"
+    set $disp3 "Hewlett Packard HP 23xig 3CM431057J"
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -140,6 +144,7 @@ output eDP-1 mode 2560x1600 pos 1920 0
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -153,6 +158,19 @@ output eDP-1 mode 2560x1600 pos 1920 0
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # default display outputs for workspaces with fallback to disp1
+    workspace number 1 output $disp1
+    workspace number 2 output $disp2
+    workspace number 3 output $disp3
+    workspace number 4 output $disp2
+    workspace number 5 output $disp1
+    workspace number 6 output $disp3
+    workspace number 7 output $disp1
+    workspace number 8 output $disp2
+    workspace number 9 output $disp3
+    workspace number 10 output $disp2
+
 #
 # Layout stuff:
 #
