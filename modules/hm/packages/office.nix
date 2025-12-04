@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, ... }:
+{ pkgs, nixpkgs-stable, ... }:
 {
   home.packages =
     with pkgs;
@@ -15,7 +15,7 @@
       en_US
       de_DE
     ])
-    ++ (with pkgs-stable; [
+    ++ (with nixpkgs-stable; [
       texlive.combined.scheme-full
     ]);
 }

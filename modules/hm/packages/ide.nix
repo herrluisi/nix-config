@@ -8,6 +8,7 @@
   home.packages =
     with pkgs-stable;
     [
+      sl
       jetbrains.webstorm
       jetbrains.pycharm-professional
       jetbrains.idea-ultimate

@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs-2505.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     lanzaboote = {
@@ -24,7 +24,7 @@
 
   outputs =
     {
-      nixpkgs-2505,
+      nixpkgs-stable,
       nixpkgs,
       sops-nix,
       lanzaboote,
@@ -62,9 +62,9 @@
         inherit system;
         pkgs = mkPkgs { inherit system; };
         specialArgs = inputs // {
-          pkgs-2505 = mkPkgs {
+          pkgs-stable = mkPkgs {
             inherit system;
-            repo = nixpkgs-2505;
+            repo = nixpkgs-stable;
           };
           libF = import ./lib/default.nix;
         };
@@ -93,9 +93,9 @@
               useUserPackages = true;
               users.uisl = import ./home.nix;
               extraSpecialArgs = inputs // {
-                pkgs-2505 = mkPkgs {
+                pkgs-stable = mkPkgs {
                   inherit system;
-                  repo = nixpkgs-2505;
+                  repo = nixpkgs-stable;
                 };
               };
             };
@@ -107,9 +107,9 @@
       homeConfigurations."uisl" = home-manager.lib.homeManagerConfiguration {
         pkgs = mkPkgs { inherit system; };
         extraSpecialArgs = inputs // {
-          pkgs-2505 = mkPkgs {
+          pkgs-stable = mkPkgs {
             inherit system;
-            repo = nixpkgs-2505;
+            repo = nixpkgs-stable;
           };
         };
 

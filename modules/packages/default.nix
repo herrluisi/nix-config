@@ -22,6 +22,7 @@
     dig
     nmap
     xorg.xkill
+    btop
 
     e2fsprogs # mkfs
 
