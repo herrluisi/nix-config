@@ -104,6 +104,8 @@
       "critical": 15,
       "warning": 50
     },
+    "tooltip-format": " Full in {time} \n Cycles: {cycles} \n Health: {health}%",
+    "tooltip-format-discharging": " Emtpy in {time} \n Cycles: {cycles} \n Health: {health}%",
     "tooltip": true
   },
 
