@@ -6,6 +6,8 @@
   font-size: 11px;
   min-height: 0;
   background-color: #555555;
+  margin: 0px;
+  padding: 0px;
 }
 
 /* Bar */
@@ -44,7 +46,7 @@ window#waybar {
 #cpu,
 #memory,
 #custom-powerprofile {
-  padding: 0 8px;
+  padding: 0 4px;
 }
 
 /* Clock (center) */
@@ -96,6 +98,7 @@ window#waybar {
 /* Network */
 #network {
   color: #5e81ac;
+  margin-left: -5px;
 }
 
 #network.disconnected {
