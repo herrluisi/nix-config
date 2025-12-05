@@ -160,16 +160,16 @@ output eDP-1 mode 2560x1600 pos 1920 0
     # We just use 1-10 as the default.
 
     # default display outputs for workspaces with fallback to disp1
-    workspace number 1 output $disp1
-    workspace number 2 output $disp2
-    workspace number 3 output $disp3
-    workspace number 4 output $disp2
-    workspace number 5 output $disp1
-    workspace number 6 output $disp3
-    workspace number 7 output $disp1
-    workspace number 8 output $disp2
-    workspace number 9 output $disp3
-    workspace number 10 output $disp2
+    workspace 1 output $disp1
+    workspace 2 output $disp2
+    workspace 3 output $disp3
+    workspace 4 output $disp2
+    workspace 5 output $disp1
+    workspace 6 output $disp3
+    workspace 7 output $disp1
+    workspace 8 output $disp2
+    workspace 9 output $disp3
+    workspace 10 output $disp2
 
 #
 # Layout stuff:
