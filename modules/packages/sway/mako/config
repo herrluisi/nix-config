@@ -1,17 +1,9 @@
-background-color=#073642
-progress-color=source #268bd2
-text-color=#839496
-border-color=#073642
-padding=10
-border-size=3
-border-radius=5
-max-icon-size=32
-icons=1
-font=Rubik 11
-actions=1
-max-visible=5
-default-timeout=6000
-margin=36,28
+font=JetBrainsMono Nerd Font
+background-color=#FB8B24
+text-color=#ffffff
+border-color=#522f04
+default-timeout=3500
+anchor=top-left
 
-[urgency=critical]
-text-color=#dc322f
+[urgency=high]
+background-color=#9A031E

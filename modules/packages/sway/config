@@ -333,3 +333,4 @@ exec flameshot
 exec kanshi
 
 exec_always systemctl --user restart kanshi &
+exec_always mako
