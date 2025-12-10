@@ -51,8 +51,8 @@ window#waybar {
 
 /* Clock (center) */
 #clock {
-  font-weight: 500;
-  background-color: #bf621d;
+  font-weight: 900;
+  background-color: #CC561E;
 }
 
 /* Battery */
