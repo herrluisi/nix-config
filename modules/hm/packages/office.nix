@@ -6,8 +6,7 @@
       texstudio
       nextcloud-client
       nemo-with-extensions
-
-      thunderbird
+      rclone
 
       hunspell
     ]
