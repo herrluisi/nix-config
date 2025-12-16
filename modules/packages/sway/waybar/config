@@ -20,6 +20,7 @@
   ],
   "modules-right": [
     "tray",
+    "custom/screenshot",
     "memory",
     "cpu",
     "bluetooth",
@@ -138,14 +139,20 @@
   "custom/powerprofile": {
     "exec": "bash /etc/nixos/scripts/performancecycle.sh get",
     "format": "{text}",
+    "return-type": "json",
     "interval": 3,
     "on-click": "bash /etc/nixos/scripts/performancecycle.sh",
-    "return-type": "json",
     "states": {
       "balanced": 30,
       "performance": 50,
       "powersave": 10
     },
     "tooltip": true
+  },
+  "custom/screenshot": {
+    "exec": "echo '{\"text\":\"📸\"}'",
+    "return-type": "json",
+    "format": "{text}",
+    "on-click": "grim -g \"$(slurp -c '#ff0000ff')\" -t ppm - | satty --filename - --fullscreen --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y-%m-%d--%H:%M:%S').png"
   }
 }

@@ -45,7 +45,8 @@ window#waybar {
 #bluetooth,
 #cpu,
 #memory,
-#custom-powerprofile {
+#custom-powerprofile,
+#custom-screenshot {
   padding: 0 4px;
 }
 

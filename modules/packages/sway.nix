@@ -59,6 +59,7 @@
       mako    # Notifications
       grim    # Screenshot tool
       slurp   # Screenshot selection tool
+      satty   # Image annonater - used for screenshots in combination with grim/slurp
       pavucontrol  # Volume control for PulseAudio
       pulsemixer  # Command-line volume control for PulseAudio
       waybar  # Status bar
