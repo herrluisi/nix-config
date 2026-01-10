@@ -12,8 +12,8 @@
 
       settings = {
         user = {
-          userName = "Luis Herr";
-          userEmail = "kontakt@luisherr.eu";
+          name = "Luis Herr";
+          email = "kontakt@luisherr.eu";
         };
         push.autoSetupRemote = true;
         init.defaultBranch = "main";
