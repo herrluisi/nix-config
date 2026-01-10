@@ -42,9 +42,6 @@
     kdePackages.kcmutils
     kdePackages.qtwebengine
     libsForQt5.kdbusaddons
-
-    # For flameshot working under KDE
-    xdg-desktop-portal
   ];
 
   # File Manager and dconf for all apps

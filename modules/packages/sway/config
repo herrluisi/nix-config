@@ -328,8 +328,6 @@ bindsym $mod+Escape exec $lock
 include /etc/sway/config.d/*
 
 exec mako
-exec nextcloud
-exec flameshot
 exec kanshi
 
 exec_always systemctl --user restart kanshi &
