@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     xournalpp
     drawio
-    kdePackages.kdeconnect-kde
     obsidian
     drawing
     yed
