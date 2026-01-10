@@ -10,8 +10,8 @@
     [
       sl
       jetbrains.webstorm
-      jetbrains.pycharm-professional
-      jetbrains.idea-ultimate
+      jetbrains.pycharm
+      jetbrains.idea
       jetbrains.datagrip
       jetbrains-mono
       jetbrains.rust-rover
