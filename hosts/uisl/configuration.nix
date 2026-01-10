@@ -3,7 +3,6 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
     ./networking.nix
-    # ./lanzaboote.nix
   ];
 
   facter.reportPath = ./facter.json;

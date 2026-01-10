@@ -72,7 +72,6 @@
           ./hosts/uisl/configuration.nix
           ./modules/base.nix
 
-          lanzaboote.nixosModules.lanzaboote
           sops-nix.nixosModules.sops
           nixos-facter-modules.nixosModules.facter
           {
@@ -100,7 +99,6 @@
               };
             };
           }
-          ./modules/nvidia.nix
         ];
       };
 
