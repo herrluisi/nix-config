@@ -2,6 +2,7 @@
   imports = [
     ./localisation.nix
     ./user.nix
+    ./graphics.nix
     ./nix
     ./boot
     ./network
