@@ -7,4 +7,6 @@
   };
 
   programs.virt-manager.enable = true;
+
+  users.users.uisl.extraGroups = [ "libvirtd" ];
 }

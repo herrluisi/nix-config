@@ -6,6 +6,7 @@
     ./android.nix
     ./documentation.nix
     ./sway.nix
+    ./virtualisation.nix
   ];
 
   environment.systemPackages = with pkgs; [
