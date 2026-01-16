@@ -16,6 +16,7 @@
       jetbrains-mono
       jetbrains.rust-rover
       android-studio
+      youtrack
     ]
     ++ (with pkgs; [
       marksman # markdown

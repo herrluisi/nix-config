@@ -3,6 +3,7 @@
     ./localisation.nix
     ./user.nix
     ./graphics.nix
+    ./systemd-timers.nix
     ./nix
     ./boot
     ./network

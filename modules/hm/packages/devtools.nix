@@ -8,7 +8,6 @@
     sqlite
     mariadb
 
-    youtrack
     insomnia
     mkcert
 
@@ -19,5 +18,7 @@
     nixfmt
     nixfmt-tree
     deadnix
+
+    jq
   ];
 }
