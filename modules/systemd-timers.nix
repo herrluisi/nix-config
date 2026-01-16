@@ -15,9 +15,6 @@
       Type = "oneshot";
       ExecStart = "curl -s 'https://api.nasa.gov/planetary/apod?api_key=${config.sops.secrets.nasa_key.path}' | jq -r '.hdurl' | xargs curl -L -o /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg";
     };
-#    installConfig = {
-#      WantedBy = [ "default.target" ];
-#    };
   };
 
   systemd.user.timers.desktop-background = {
@@ -29,8 +26,5 @@
       Persistent = true;
       Unit = "desktop-background.service";
     };
-#    installConfig = {
-#      WantedBy = [ "timers.target" ];
-#    };
   };
 }
