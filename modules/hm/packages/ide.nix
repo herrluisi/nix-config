@@ -17,6 +17,7 @@
       jetbrains.rust-rover
       android-studio
       youtrack
+      arduino-ide
     ]
     ++ (with pkgs; [
       marksman # markdown

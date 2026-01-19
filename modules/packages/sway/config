@@ -101,6 +101,7 @@ output eDP-1 mode 2560x1600 pos 1920 0
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
 #
 # Moving around:
 #
@@ -109,7 +110,7 @@ output eDP-1 mode 2560x1600 pos 1920 0
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
+
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
@@ -239,12 +240,16 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86AudioMute exec pulsemixer --toggle
     bindsym XF86AudioRaiseVolume exec pulsemixer --unmute --change-volume +5 --max-volume 100
     bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5
+
     # Special keys to adjust brightness via brightnessctl
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
     bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK
-    # Special key to take a screenshot with grim
-    bindsym Print exec grim
 
+    # Special key to take a screenshot with grim
+    bindsym Print exec "grim -g \"$(slurp -c '#ff0000ff')\" -t png - | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date '+%Y-%m-%d--%H:%M:%S').png"
+
+    # Special key to get a line based calculator with bemenu
+    bindsym XF86Calculator exec bemenu-calculator -H 21 -p "Calc: " | wl-copy
 #
 # Status Bar:
 #
