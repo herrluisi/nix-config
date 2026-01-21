@@ -23,7 +23,6 @@
       '';
       shellAliases =
         let
-          restart-desktop-path = pkgs.writeShellScript "restart-desktop.sh" "kquitapp5 plasmashell || killall plasmashell && kstart5 plasmashell";
           diffstr-path = pkgs.writeShellScript "diffstr.sh" "echo diff <( printf '%s\n' $1 ) <( printf '%s\n' $2 )";
         in
         {
@@ -31,7 +30,6 @@
           dc = "sudo docker compose";
           c = "clear";
           nixos = "cd /etc/nixos/";
-          restartdesktop = "sh ${restart-desktop-path}";
           diffstr = "sh ${diffstr-path}";
           ".." = "cd ..";
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
