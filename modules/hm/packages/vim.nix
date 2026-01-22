@@ -8,28 +8,42 @@
     relativenumber = true;
     incsearch = true;
 
-    plugins.lualine.enable = true;
-    plugins.nix.enable = true;
+    plugins = {
+      lualine.enable = true;
+      nix.enable = true;
 
-    plugins.treesitter.enable = true;
+      treesitter.enable = true;
 
-    plugins.telescope.enable = true;
-    plugins.mini-icons.enable = true;
-    plugins.mini-icons.mockDevIcons = true;
+      telescope.enable = true;
+      mini-icons.enable = true;
+      mini-icons.mockDevIcons = true;
 
-    plugins.lsp = {
-      keymaps = {
-        silent = true;
-        diagnostic = {
-          "<leader>k" = "goto_prev";
-          "<leader>j" = "goto_next";
-        };
+      vim-nix.enable = true;
+      lsp = {
+        keymaps = {
+          silent = true;
+          diagnostic = {
+            "<leader>k" = "goto_prev";
+            "<leader>j" = "goto_next";
+          };
 
-        lspBuf = {
-          gd = "definition";
-          K  = "hover";
+          lsBuf = {
+            gd = "definition";
+            K = "hover";
+          };
         };
       };
+
+      cmp = {
+        autoEnableSources = true;
+        settings.sources = [
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+        autoLoad = true;  
+      };
     };
+    clipboard.providers.wl-copy.enable = true;
   };
 }
