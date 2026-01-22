@@ -7,6 +7,7 @@
   programs = {
     bash = {
       enable = true;
+
       bashrcExtra = ''
         PS1='\[$(tput setaf 208)\][\u:\w]\\$\[$(tput sgr0)\] '
         HISTSIZE=9999999999
@@ -21,6 +22,7 @@
           fi
         }
       '';
+
       shellAliases =
         let
           diffstr-path = pkgs.writeShellScript "diffstr.sh" "echo diff <( printf '%s\n' $1 ) <( printf '%s\n' $2 )";
@@ -35,6 +37,7 @@
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
           build-system = "sudo nixos-rebuild build --flake /etc/nixos";
           powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
+          new-desktop = "curl -s 'https://api.nasa.gov/planetary/apod?api_key=$DESKTOP_API_KEY' | jq -r '.hdurl' | xargs curl -L -o /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg";
         };
     };
   };

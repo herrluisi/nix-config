@@ -6,7 +6,6 @@
     ./gpg.nix
     ./mail.nix
 
-
     # Desktop environment
     ./desktop
 

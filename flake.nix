@@ -3,6 +3,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
+    nixvim.url = "github:nix-community/nixvim";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +28,7 @@
       nixos-facter-modules,
       home-manager,
       nix-index-database,
+      nixvim,
       ...
     }@inputs:
     let
@@ -69,6 +71,7 @@
 
           sops-nix.nixosModules.sops
           nixos-facter-modules.nixosModules.facter
+          nixvim.nixosModules.nixvim
           {
             networking = {
               hostName = "uisl";
@@ -86,6 +89,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.uisl = import ./home.nix;
+              sharedModules = [ nixvim.homeModules.nixvim ];
               extraSpecialArgs = inputs // {
                 pkgs-stable = mkPkgs {
                   inherit system;
