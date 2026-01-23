@@ -8,7 +8,6 @@
     ./networking.nix
     ./office.nix
     ./textediting.nix
-    ./vim.nix
   ];
 
   programs.direnv.enable = true;
