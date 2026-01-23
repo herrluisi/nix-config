@@ -84,13 +84,12 @@ output eDP-1 mode 2560x1600 pos 1920 0
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym ctrl+y kill
+    bindsym Ctrl+Alt+y kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
+    # Drag floating windows by holding down $mod and left mou:# Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
