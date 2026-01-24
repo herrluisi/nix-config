@@ -64,11 +64,12 @@
             repo = nixpkgs-stable;
           };
           libF = import ./lib/default.nix;
+          inherit inputs;
         };
         modules = [
           ./hosts/uisl/configuration.nix
           ./modules/base.nix
-
+          
           sops-nix.nixosModules.sops
           nixos-facter-modules.nixosModules.facter
           {
@@ -93,7 +94,6 @@
                   inherit system;
                   repo = nixpkgs-stable;
                 };
-                nixvim = inputs.nixvim;
               };
             };
           }
@@ -107,7 +107,6 @@
             inherit system;
             repo = nixpkgs-stable;
           };
-          nixvim = inputs.nixvim;
         };
 
         modules = [

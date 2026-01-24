@@ -1,5 +1,7 @@
-{ pkgs-stable, pkgs, lib,  ... }:
+{ pkgs-stable, pkgs, lib,  inputs, ... }:
 {
+  # imports = [ inputs.nixvim.homeManagerModule.nixvim ];
+
   home.packages =
     with pkgs-stable;
     [
@@ -20,6 +22,8 @@
       nginx-language-server
       bash-language-server
     ]);
+  
+  # programs.nixvim.enable = true;
 
   programs.vscode = {
     enable = true;
