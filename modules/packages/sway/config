@@ -62,12 +62,12 @@ output eDP-1 mode 2560x1600 pos 1920 0
 #
 # Example configuration:
 #
-#   input type:touchpad {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+   input type:touchpad {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+   }
 #
 #   input type:keyboard {
 #       xkb_layout "eu"
@@ -75,6 +75,9 @@ output eDP-1 mode 2560x1600 pos 1920 0
 #
 # You can also configure each device individually.
 # Read `man 5 sway-input` for more information about this section.
+
+
+
 
 ### Key bindings
 #
