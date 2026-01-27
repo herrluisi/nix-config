@@ -40,6 +40,7 @@
           powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
           new-desktop = "curl -s 'https://api.nasa.gov/planetary/apod?api_key=$DESKTOP_API_KEY' | jq -r '.hdurl' | xargs curl -L -o /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg";
           newdesktop = "new-desktop";
+          nixvim-reinstall = "bash /etc/nixos/scripts/nixvim-reinstall.sh";
         };
     };
   };
