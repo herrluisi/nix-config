@@ -38,7 +38,7 @@
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
           build-system = "sudo nixos-rebuild build --flake /etc/nixos";
           powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
-          new-desktop = "curl -s 'https://api.nasa.gov/planetary/apod?api_key=$DESKTOP_API_KEY' | jq -r '.hdurl' | xargs curl -L -o /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg";
+          new-desktop = "curl -s \"https://api.nasa.gov/planetary/apod?api_key=$(cat /run/secrets/nasa_key)\" | jq -r '.hdurl' | xargs curl -L -o /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg";
           newdesktop = "new-desktop";
           nixvim-reinstall = "bash /etc/nixos/scripts/nixvim-reinstall.sh";
         };

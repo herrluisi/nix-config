@@ -13,6 +13,9 @@
       keyFile = "/root/.key";
       sshKeyPaths = [];
     };
+    secrets = {
+      nasa_key.owner = "uisl";
+    };
   };
 
   # This value determines the NixOS release from which the default
