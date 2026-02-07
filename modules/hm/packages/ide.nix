@@ -15,6 +15,7 @@
       android-studio
       youtrack
       arduino-ide
+      copilot-cli
     ]
     ++ (with pkgs; [
       marksman # markdown
