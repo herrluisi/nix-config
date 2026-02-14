@@ -45,6 +45,11 @@
     };
   };
 
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
+
+
   home.packages = with pkgs; [ terminator ];
 
   home.file.".config/terminator/config".text = ''
@@ -58,7 +63,7 @@
       prev_tab = ""
     [profiles]
       [[default]]
-        font = Monospace 10
+        font = JetBrainsMono Nerd Font 10
         background_darkness = 0.95
         use_system_font = False
         show_titlebar = False
@@ -75,4 +80,5 @@
       [[SaveLastSessionLayout]]
     [plugins]
   '';
+
 }
