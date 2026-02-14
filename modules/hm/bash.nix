@@ -51,11 +51,12 @@
 
 
   home.packages = with pkgs; [ terminator ];
+  
 
   home.file.".config/terminator/config".text = ''
     [global_config]
       use_custom_url_handler = True
-      enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminalShot, CustomCommandsMenu,>
+      enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminalShot, CustomCommandsMenu
       ask_before_closing = never
     [keybindings]
       close_window = ""
@@ -63,7 +64,7 @@
       prev_tab = ""
     [profiles]
       [[default]]
-        font = JetBrainsMono Nerd Font 10
+        font = JetBrainsMono Nerd Font Mono 10
         background_darkness = 0.95
         use_system_font = False
         show_titlebar = False
@@ -80,5 +81,4 @@
       [[SaveLastSessionLayout]]
     [plugins]
   '';
-
 }
