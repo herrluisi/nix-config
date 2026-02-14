@@ -47,12 +47,10 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    terminator
   ];
 
-
-  home.packages = with pkgs; [ terminator ];
   
-
   home.file.".config/terminator/config".text = ''
     [global_config]
       use_custom_url_handler = True
