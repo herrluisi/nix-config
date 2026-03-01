@@ -22,9 +22,10 @@
     neofetch
     dig
     nmap
-    xorg.xkill
+    xkill
     btop
-
+    ripgrep 
+    
     e2fsprogs # mkfs
 
     usbutils
