@@ -4,5 +4,6 @@
     mpv
     obs-studio
     yt-dlp
+    ffmpeg
   ];
 }

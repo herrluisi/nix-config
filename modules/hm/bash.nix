@@ -21,6 +21,34 @@
             fi
           fi
         }
+        
+        function new-desktop() {
+          local api_key
+          api_key=$(cat /run/secrets/nasa_key)
+          local out_dir="/home/uisl/Documents/my_stuff/picture_of_the_day"
+          local out_file="$out_dir/latest.jpg"
+
+          # Try downloading the HD image directly
+          local hdurl
+          hdurl=$(curl -s "https://api.nasa.gov/planetary/apod?api_key=$api_key" | jq -r '.hdurl')
+
+          if [[ -n "$hdurl" && "$hdurl" != "null" ]]; then
+            curl -L -o "$out_file" "$hdurl" && echo "Saved HD image to $out_file" && return 0
+          fi
+
+          # Fall back to extracting first frame from video
+          local url
+          url=$(curl -s "https://api.nasa.gov/planetary/apod?api_key=$api_key" | jq -r '.url')
+
+          if [[ -z "$url" || "$url" == "null" ]]; then
+            echo "Error: Could not retrieve any URL from APOD API." >&2
+            return 1
+          fi
+
+          ffmpeg -i "$url" -vframes 1 -update 1 -q:v 2 "$out_file" \
+            && echo "Saved video frame to $out_file" \
+            || { echo "Error: ffmpeg frame extraction failed." >&2; return 1; }
+        }
       '';
 
       shellAliases =
@@ -38,7 +66,6 @@
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
           build-system = "sudo nixos-rebuild build --flake /etc/nixos";
           powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
-          new-desktop = "curl -s \"https://api.nasa.gov/planetary/apod?api_key=$(cat /run/secrets/nasa_key)\" | jq -r '.hdurl' | xargs curl -L -o /home/uisl/Documents/my_stuff/picture_of_the_day/latest.jpg";
           newdesktop = "new-desktop";
           nixvim-reinstall = "bash /etc/nixos/scripts/nixvim-reinstall.sh";
         };
