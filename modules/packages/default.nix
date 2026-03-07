@@ -19,7 +19,7 @@
     killall
     openssl
     fd
-    neofetch
+    fastfetch
     dig
     nmap
     xkill
