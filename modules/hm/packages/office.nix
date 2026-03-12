@@ -7,7 +7,9 @@
       nextcloud-client
       nemo-with-extensions
       rclone
-
+      (yazi.override {
+		    _7zz = _7zz-rar;  # Support for RAR extraction
+	    })
       hunspell
     ]
     ++ (with pkgs.hunspellDicts; [
