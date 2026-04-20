@@ -61,6 +61,7 @@
           c = "clear";
           nixos = "cd /etc/nixos/";
           nixvim = "cd /home/uisl/Documents/programming/config_stuff/nixvim-config/";
+          nixdocs = "cd /home/uisl/Documents/programming/config_stuff/nix-docs";
           diffstr = "sh ${diffstr-path}";
           ".." = "cd ..";
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
