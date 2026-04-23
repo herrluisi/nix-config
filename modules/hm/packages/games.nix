@@ -4,7 +4,7 @@
     prismlauncher-unwrapped
     lunar-client
     lutris
-    wineWowPackages.full
+    wineWow64Packages.full
     winetricks
     steam
     vulkan-tools
