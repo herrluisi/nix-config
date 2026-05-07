@@ -1,13 +1,13 @@
-{ pkgs-stable, pkgs, lib,  inputs, ... }:
+{ pkgs, lib, inputs, ... }:
 {
   # imports = [ inputs.nixvim.homeManagerModule.nixvim ];
 
   home.packages =
-    with pkgs-stable;
+    with pkgs;
     [
       sl
       jetbrains.webstorm
-      jetbrains.pycharm
+      jetbrains.pycham
       jetbrains.idea
       jetbrains.datagrip
       jetbrains-mono
@@ -17,7 +17,8 @@
       arduino-ide
       github-copilot-cli
     ]
-    ++ (with pkgs; [
+    ++ (with pkgs; 
+    [
       marksman # markdown
       yaml-language-server
       nginx-language-server
