@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   extensions = [
     { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Originw
