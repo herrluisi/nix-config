@@ -2,7 +2,7 @@
 {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-  packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     bluetui
   ];
 }
