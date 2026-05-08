@@ -3,9 +3,8 @@
   networking = {
     networkmanager = {
       enable = true;
-      # ethernet.macAddress = "random";
-      # wifi.macAddress = "random";
     };
+    wireless.iwd.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
