@@ -7,7 +7,7 @@
     [
       sl
       jetbrains.webstorm
-      jetbrains.pycham
+      jetbrains.pycharm
       jetbrains.idea
       jetbrains.datagrip
       jetbrains-mono
