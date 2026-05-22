@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./disk-configuration.nix
     ./networking.nix
+    ./fingerprint.nix
   ];
 
   facter.reportPath = ./facter.json;
