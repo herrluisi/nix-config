@@ -1,4 +1,4 @@
-{ lib, disko, ... }:
+{ disko, ... }:
 {
   imports = [ disko.nixosModules.disko ];
   disko.devices = {
