@@ -4,7 +4,6 @@
     networkmanager = {
       enable = true;
     };
-    wireless.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

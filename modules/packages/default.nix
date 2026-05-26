@@ -43,7 +43,6 @@
     # KDE needed packages
     kdePackages.kcmutils
     kdePackages.qtwebengine
-    libsForQt5.kdbusaddons
   ];
 
   # File Manager and dconf for all apps
