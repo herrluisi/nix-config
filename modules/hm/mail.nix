@@ -64,19 +64,5 @@ in
       inherit signature realName;
       thunderbird.enable = true;
     };
-    "amphomoronal@gmail.com" = {
-      address = "amphomoronal@gmail.com";
-      userName = "amphomoronal@gmail.com";
-      inherit (gmail) imap smtp;
-      inherit signature realName;
-      thunderbird.enable = true;
-    };
-    "luis@novacodes.eu" = {
-      address = "luis@novacodes.eu";
-      userName = "luis@novacodes.eu";
-      inherit (felbinger) imap smtp;
-      inherit signature realName;
-      thunderbird.enable = true;
-    };
   };
 }
