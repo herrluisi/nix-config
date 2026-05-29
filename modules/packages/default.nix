@@ -2,7 +2,7 @@
 {
   imports = [
     ./audio.nix
-    ./kde.nix
+    #    ./kde.nix
     ./android.nix
     ./documentation.nix
     ./sway.nix
