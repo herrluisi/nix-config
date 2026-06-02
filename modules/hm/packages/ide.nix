@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, ... }:
 {
   # imports = [ inputs.nixvim.homeManagerModule.nixvim ];
 
@@ -16,6 +16,7 @@
       youtrack
       arduino-ide
       github-copilot-cli
+      eclipses.eclipse-dsl # for Univesity stuff
     ]
     ++ (with pkgs; 
     [
