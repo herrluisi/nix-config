@@ -5,7 +5,6 @@
   home.packages =
     with pkgs;
     [
-      sl
       jetbrains.webstorm
       jetbrains.pycharm
       jetbrains.idea
