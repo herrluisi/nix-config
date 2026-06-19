@@ -57,6 +57,13 @@ in
       inherit signature realName;
       thunderbird.enable = true;
     };
+    "drk@luisherr.eu" = {
+      address = "drk@luisherr.eu";
+      userName = "drk@luisherr.eu";
+      inherit (felbinger) imap smtp;
+      inherit signature realName;
+      thunderbird.enable = true;
+    };
     "luis.maximilian.herr@gmail.com" = {
       address = "luis.maximilian.herr@gmail.com";
       userName = "luis.maximilian.herr@gmail.com";
