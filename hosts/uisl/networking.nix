@@ -18,6 +18,7 @@
       [
         "hotspot"
         "zuhause"
+        "laila"
         #"luca_wlan"
         #"tankstelle"
       ];
