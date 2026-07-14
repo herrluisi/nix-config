@@ -1,8 +1,4 @@
-{
-  libF,
-  config,
-  ...
-}:
+{ libF, config, pkgs, ... }:
 {
   imports =
     map
@@ -23,4 +19,11 @@
         #"tankstelle"
       ];
   networking.hostId = "33565494";
+
+  # VPN Configuration
+  networking.firewall.checkReversePath = false;
+  environment.systemPackages = with pkgs; [
+    wireguard-tools
+    protonvpn-gui
+  ];
 }
