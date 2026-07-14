@@ -4,7 +4,6 @@
     ./silent-boot.nix
     ./systemd-boot.nix
     ./logind.nix
-    ./pre-suspend-tasks.nix
   ];
 
   boot = {

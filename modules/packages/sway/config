@@ -367,8 +367,12 @@ input "type:keyboard" {
 ### Swaylock and Swayidle configuration
 
 
-bindswitch lid:on exec sh -c '$lock && bash /etc/nixos/scripts/lock.sh'
-bindswitch lid:off exec sh -c 'bash /etc/nixos/scripts/unlock.sh'
+bindswitch lid:on exec sh -c 'systemctl suspend'
+bindswitch lid:off exec sh -c ''
+
+# lock screen after every suspend. I don't want the delay before the suspend...
+exec_always pkill -x swayidle; swayidle -w \
+  before-sleep '$lock'
 
 bindsym $mod+Escape exec $lock
 
