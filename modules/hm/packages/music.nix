@@ -6,7 +6,6 @@
 
     # tag music
     picard
-    picard-tools
     
     # play and organize music
     strawberry
