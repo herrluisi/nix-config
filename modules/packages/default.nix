@@ -40,11 +40,6 @@
     wget
     curl
     whois
-    dnsutils
-
-    # KDE needed packages
-    kdePackages.kcmutils
-    kdePackages.qtwebengine
   ];
 
   # File Manager and dconf for all apps
