@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-  # tag music
+    # convert music
+    ffmpeg
+
+    # tag music
     picard
     picard-tools
     
