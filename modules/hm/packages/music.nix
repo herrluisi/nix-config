@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    # tag music
+  home.packages = with pkgs; [
+  # tag music
     picard
     picard-tools
     
