@@ -5,6 +5,7 @@
     ./games.nix
     ./ide.nix
     ./media.nix
+    ./music.nix
     ./networking.nix
     ./office.nix
     ./textediting.nix

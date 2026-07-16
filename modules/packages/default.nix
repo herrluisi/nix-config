@@ -4,7 +4,6 @@
     ./audio.nix
     ./android.nix
     ./documentation.nix
-    ./music.nix
     ./power.nix
     ./sway.nix
     ./virtualisation.nix

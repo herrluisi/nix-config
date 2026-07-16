@@ -5,6 +5,5 @@
     obs-studio
     yt-dlp
     ffmpeg
-    picard
   ];
 }
