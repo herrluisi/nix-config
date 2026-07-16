@@ -26,6 +26,8 @@
     btop
     ripgrep 
     
+    parallel
+
     e2fsprogs # mkfs
 
     usbutils
