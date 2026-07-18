@@ -50,6 +50,15 @@
             || { echo "Error: ffmpeg frame extraction failed." >&2; return 1; }
         }
         
+        # Converts a 0-based index into a two-letter code: 0->aa, 1->ab, ..., 25->az, 26->ba, ...
+        function _idx_to_letters() {
+          local n=$1
+          local first=$(( n / 26 ))
+          local second=$(( n % 26 ))
+          local a_ord=97  # ascii 'a'
+          printf "\\$(printf '%03o' $((a_ord + first)))\\$(printf '%03o' $((a_ord + second)))"
+        }
+
         function rename_tracks() {
           local artist="$1"
           local tracklist="''${2:-tracklist.txt}"
@@ -69,16 +78,17 @@
           artist_clean=$(echo "$artist" | tr ' ' '_' | tr -cd '[:alnum:]_-')
 
           local i=1
+          local idx=0
           while IFS= read -r title || [ -n "$title" ]; do
             [ -z "$title" ] && continue
 
             local title_clean
             title_clean=$(echo "$title" | tr ' ' '_' | tr -cd '[:alnum:]_-')
 
-            local num src dest
-            num=$(printf "%02d" "$i")
+            local code src dest
+            code=$(_idx_to_letters "$idx")
             src="Track ''${i}.wav"
-            dest="''${num}-''${title_clean}-''${artist_clean}.wav"
+            dest="''${code}-''${title_clean}-''${artist_clean}.wav"
 
             if [ -f "$src" ]; then
               mv -- "$src" "$dest"
@@ -88,6 +98,7 @@
             fi
 
             i=$((i+1))
+            idx=$((idx+1))
           done < "$tracklist"
         }
 
