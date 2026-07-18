@@ -49,6 +49,54 @@
             && echo "Saved video frame to $out_file" \
             || { echo "Error: ffmpeg frame extraction failed." >&2; return 1; }
         }
+        
+        function rename_tracks() {
+          local artist="$1"
+          local tracklist="''${2:-tracklist.txt}"
+
+          if [ -z "$artist" ]; then
+            echo "Fehler: Bitte Artist als erstes Argument angeben."
+            echo "Nutzung: rename_tracks \"Artist Name\" [tracklist.txt]"
+            return 1
+          fi
+
+          if [ ! -f "$tracklist" ]; then
+            echo "Fehler: '$tracklist' nicht gefunden."
+            return 1
+          fi
+
+          local artist_clean
+          artist_clean=$(echo "$artist" | tr ' ' '_' | tr -cd '[:alnum:]_-')
+
+          local i=1
+          while IFS= read -r title || [ -n "$title" ]; do
+            [ -z "$title" ] && continue
+
+            local title_clean
+            title_clean=$(echo "$title" | tr ' ' '_' | tr -cd '[:alnum:]_-')
+
+            local num src dest
+            num=$(printf "%02d" "$i")
+            src="Track ''${i}.wav"
+            dest="''${num}-''${title_clean}-''${artist_clean}.wav"
+
+            if [ -f "$src" ]; then
+              mv -- "$src" "$dest"
+              echo "Umbenannt: $src -> $dest"
+            else
+              echo "Warnung: '$src' nicht gefunden, übersprungen."
+            fi
+
+            i=$((i+1))
+          done < "$tracklist"
+        }
+
+        function process_music() {
+          rename_tracks "$1" "$2" || return 1
+          find . -name "*.wav" -print0 | parallel -0 -j+0 'ffmpeg -i "{}" -c:a flac -compression_level 8 "{.}.flac"'
+          mkdir ../flac/
+          mv *.flac ../flac/
+        }
       '';
 
       shellAliases =
