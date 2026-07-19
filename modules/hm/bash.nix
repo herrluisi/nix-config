@@ -115,22 +115,22 @@
           diffstr-path = pkgs.writeShellScript "diffstr.sh" "echo diff <( printf '%s\n' $1 ) <( printf '%s\n' $2 )";
         in
         {
-          pwd = "pwd | xclip -selection clipboard";
-          dc = "sudo docker compose";
+          ".." = "cd ..";
+          build-system = "sudo nixos-rebuild build --flake /etc/nixos";
           c = "clear";
+          dc = "sudo docker compose";
+          diffstr = "sh ${diffstr-path}";
+          music = "cd /home/uisl/Documents/music";
+          newdesktop = "new-desktop";
+          nixdocs = "cd /home/uisl/Documents/programming/config_stuff/nix-docs";
           nixos = "cd /etc/nixos/";
           nixvim = "cd /home/uisl/Documents/programming/config_stuff/nixvim-config";
-          nixdocs = "cd /home/uisl/Documents/programming/config_stuff/nix-docs";
-          studiumprojects = "cd /home/uisl/Documents/studium/THM/projects";
-          studium = "cd /home/uisl/Documents/studium/THM";
-          diffstr = "sh ${diffstr-path}";
-          ".." = "cd ..";
-          switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
-          build-system = "sudo nixos-rebuild build --flake /etc/nixos";
-          powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
-          newdesktop = "new-desktop";
           nixvim-reinstall = "bash /etc/nixos/scripts/nixvim-reinstall.sh";
-          music = "cd /home/uisl/Documents/music";
+          powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
+          pwd = "pwd | xclip -selection clipboard";
+          studium = "cd /home/uisl/Documents/studium/THM";
+          studiumprojects = "cd /home/uisl/Documents/studium/THM/projects";
+          switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
         };
     };
   };
