@@ -130,6 +130,7 @@
           powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
           newdesktop = "new-desktop";
           nixvim-reinstall = "bash /etc/nixos/scripts/nixvim-reinstall.sh";
+          music = "cd /home/uisl/Documents/music";
         };
     };
   };
