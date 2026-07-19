@@ -17,6 +17,6 @@
       de_DE
     ])
     ++ (with nixpkgs-stable; [
-      texlive.combined.scheme-full
+      texliveFull
     ]);
 }
