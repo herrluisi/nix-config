@@ -108,6 +108,32 @@
           mkdir ../flac/
           mv *.flac ../flac/
         }
+
+        function check_missing_music() {
+          local music_dir="''${1:-.}"
+          if [ ! -d "$music_dir" ]; then
+            echo "Fehler: '$music_dir' ist kein Verzeichnis." >&2
+            return 1
+          fi
+
+          local artist_dir album_dir flac_dir
+
+          for artist_dir in "$music_dir"/*/; do
+            [ -d "$artist_dir" ] || continue
+
+            for album_dir in "$artist_dir"*/; do
+              [ -d "$album_dir" ] || continue
+
+              flac_dir="$album_dir flac"
+
+              if [ ! -d "$flac_dir" ]; then
+                echo "Kein flac-Ordner: $album_dir"
+              elif [ -z "$(find "$flac_dir" -mindepth 1 -print -quit)" ]; then
+                echo "Leerer flac-Ordner: $album_dir"
+              fi
+            done
+          done
+        }
       '';
 
       shellAliases =
