@@ -124,8 +124,7 @@
             for album_dir in "$artist_dir"*/; do
               [ -d "$album_dir" ] || continue
 
-              flac_dir="$album_dir flac"
-
+              flac_dir="''${album_dir}flac"
               if [ ! -d "$flac_dir" ]; then
                 echo "Kein flac-Ordner: $album_dir"
               elif [ -z "$(find "$flac_dir" -mindepth 1 -print -quit)" ]; then
