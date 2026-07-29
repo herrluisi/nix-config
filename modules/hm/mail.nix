@@ -24,6 +24,19 @@ let
       tls.enable = true;
     };
   };
+  thm = {
+    userName = "lmhr13";
+    imap = {
+      host = "mailgate.thm.de";
+      port = 993;
+      tls.enable = true;
+    };
+    smtp = {
+      host = "mailgate.thm.de";
+      port = 465;
+      tls.enable = true;
+    };
+  };
   realName = "Luis Herr";
   signature = {
     showSignature = "append";
@@ -66,6 +79,12 @@ in
       address = "luis.maximilian.herr@gmail.com";
       userName = "luis.maximilian.herr@gmail.com";
       inherit (gmail) imap smtp;
+      inherit signature realName;
+      thunderbird.enable = true;
+    };
+    "luis.herr@zdh.thm.de" = {
+      address = "luis.herr@zdh.thm.de";
+      inherit (thm) imap smtp userName;
       inherit signature realName;
       thunderbird.enable = true;
     };
