@@ -57,6 +57,7 @@ in
 
   accounts.email.accounts = {
     "herrluisi@mailbox.org" = {
+      primary = true;
       address = "herrluisi@mailbox.org";
       aliases = [
         "kontakt@luisherr.eu"
