@@ -52,8 +52,7 @@ in
     };
     "politik@luisherr.eu" = {
       address = "politik@luisherr.eu";
-      userName = "herrluisi@mailbox.org";
-      inherit (mailbox) imap smtp;
+      inherit (mailbox) imap smtp userName;
       inherit signature realName;
       thunderbird.enable = true;
     };
