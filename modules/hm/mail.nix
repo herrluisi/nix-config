@@ -56,21 +56,13 @@ in
   };
 
   accounts.email.accounts = {
-    "kontakt@luisherr.eu" = {
-      primary = true;
-      address = "kontakt@luisherr.eu";
-      inherit (mailbox) imap smtp userName;
-      inherit signature realName;
-      thunderbird.enable = true;
-    };
-    "politik@luisherr.eu" = {
-      address = "politik@luisherr.eu";
-      inherit (mailbox) imap smtp userName;
-      inherit signature realName;
-      thunderbird.enable = true;
-    };
-    "drk@luisherr.eu" = {
-      address = "drk@luisherr.eu";
+    "herrluisi@mailbox.org" = {
+      address = "herrluisi@mailbox.org";
+      aliases = [
+        "kontakt@luisherr.eu"
+        "drk@luisherr.eu"
+        "politik@luisherr.eu"
+      ];
       inherit (mailbox) imap smtp userName;
       inherit signature realName;
       thunderbird.enable = true;
