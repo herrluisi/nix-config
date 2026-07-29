@@ -11,14 +11,15 @@ let
       tls.enable = true;
     };
   };
-  felbinger = {
+  mailbox = {
+    userName = "herrluisi@mailbox.org";
     imap = {
-      host = "mail.felbinger.eu";
+      host = "imap.mailbox.org";
       port = 993;
       tls.enable = true;
     };
     smtp = {
-      host = "mail.felbinger.eu";
+      host = "smtp.mailbox.org";
       port = 465;
       tls.enable = true;
     };
@@ -45,22 +46,20 @@ in
     "kontakt@luisherr.eu" = {
       primary = true;
       address = "kontakt@luisherr.eu";
-      userName = "kontakt@luisherr.eu";
-      inherit (felbinger) imap smtp;
+      inherit (mailbox) imap smtp userName;
       inherit signature realName;
       thunderbird.enable = true;
     };
     "politik@luisherr.eu" = {
       address = "politik@luisherr.eu";
-      userName = "politik@luisherr.eu";
-      inherit (felbinger) imap smtp;
+      userName = "herrluisi@mailbox.org";
+      inherit (mailbox) imap smtp;
       inherit signature realName;
       thunderbird.enable = true;
     };
     "drk@luisherr.eu" = {
       address = "drk@luisherr.eu";
-      userName = "drk@luisherr.eu";
-      inherit (felbinger) imap smtp;
+      inherit (mailbox) imap smtp userName;
       inherit signature realName;
       thunderbird.enable = true;
     };
