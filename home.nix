@@ -20,6 +20,13 @@
     '';
   };
 
+  xdg.configFile = {
+    "sway/config".source = ./modules/packages/sway/config;
+    "kanshi/config".source = ./modules/packages/sway/kanshi/config;
+    "waybar/config".source = ./modules/packages/sway/waybar/config;
+    "waybar/style.css".source = ./modules/packages/sway/waybar/style.css;
+    "mako/config".source = ./modules/packages/sway/mako/config;
+  };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
