@@ -379,7 +379,3 @@ bindsym $mod+Escape exec $lock
 include /etc/sway/config.d/*
 
 exec mako
-exec kanshi
-
-exec_always systemctl --user restart kanshi &
-exec_always mako
