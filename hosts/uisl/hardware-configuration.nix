@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, ... }:
+{ config, lib, modulesPath, pkgs, ... }:
 
 {
   imports =
@@ -13,6 +13,7 @@
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
     zfs.forceImportRoot = false;
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
