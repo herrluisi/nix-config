@@ -379,3 +379,4 @@ bindsym $mod+Escape exec $lock
 include /etc/sway/config.d/*
 
 exec mako
+exec nextcloud --background
