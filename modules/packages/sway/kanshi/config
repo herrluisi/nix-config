@@ -1,41 +1,27 @@
-output "Ancor Communications Inc BE24A G1LMQS040301" {
-  mode 1920x1080
-  position 1920,0
-  scale 1
-  alias $HOME_MID
-}
-
-output "Hewlett Packard HP 23xig 3CM431057J" {
-  mode 1920x1080
-  position 0,0
-  scale 1
-  alias $HOME_LEFT
-}
-
 profile home {
-  output "BOE 0x0BC9 Unknown" mode 2560x1600 enable position 3840,0 scale 1.5
-  output $HOME_MID enable
-  output $HOME_LEFT enable
+  output "BOE 0x0BC9 Unknown" mode 2560x1600 position 3840,0 scale 1.5 enable
+  output "Ancor Communications Inc BE24A G1LMQS040301" mode 1920x1080 position 1920,0 scale 1 enable
+  output "Hewlett Packard HP 23xig 3CM431057J" mode 1920x1080 position 0,0 scale 1 enable
 }
 
 profile mirror {
-    output "BOE 0x0BC9 Unknown" mode 2560x1600 enable position 1920,0 scale 1.5
-    output DP-4 enable position 0,0
-    exec wl-present mirror eDP-1 --fullscreen-output DP-4 --fullscreen
+  output "BOE 0x0BC9 Unknown" mode 2560x1600 position 1920,0 scale 1.5 enable
+  output "DP-4" position 0,0 enable
+  exec wl-present mirror eDP-1 --fullscreen-output DP-4 --fullscreen
 }
 
 profile mobile {
-  output "BOE 0x0BC9 Unknown" mode 2560x1600 enable position 0,0 scale 1.0
+  output "BOE 0x0BC9 Unknown" mode 2560x1600 position 0,0 scale 1.0 enable
 }
 
 profile lock {
-  output "BOE 0x0BC9 Unknown" mode 2560x1600 enable position 3840,0 scale 1.5
-  output $HOME_MID disable
-  output $HOME_LEFT enable
+  output "BOE 0x0BC9 Unknown" mode 2560x1600 position 3840,0 scale 1.5 enable
+  output "Ancor Communications Inc BE24A G1LMQS040301" disable
+  output "Hewlett Packard HP 23xig 3CM431057J" mode 1920x1080 position 0,0 scale 1 enable
 }
 
 profile unlock {
-  output "BOE 0x0BC9 Unknown" mode 2560x1600 enable position 3840,0 scale 1.5
-  output $HOME_MID enable
-  output $HOME_LEFT enable
+  output "BOE 0x0BC9 Unknown" mode 2560x1600 position 3840,0 scale 1.5 enable
+  output "Ancor Communications Inc BE24A G1LMQS040301" mode 1920x1080 position 1920,0 scale 1 enable
+  output "Hewlett Packard HP 23xig 3CM431057J" mode 1920x1080 position 0,0 scale 1 enable
 }
