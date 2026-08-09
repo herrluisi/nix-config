@@ -169,10 +169,12 @@
           nixvim = "cd /home/uisl/Documents/programming/config_stuff/nixvim-config";
           nixvim-reinstall = "bash /etc/nixos/scripts/nixvim-reinstall.sh";
           powerprofile = "bash /etc/nixos/scripts/performancecycle.sh";
+          projects = "cd /home/uisl/Documents/programming/projects";
           pwd = "pwd | xclip -selection clipboard";
           studium = "cd /home/uisl/Documents/studium/THM";
           studiumprojects = "cd /home/uisl/Documents/studium/THM/projects";
           switch-system = "sudo nixos-rebuild switch --flake /etc/nixos";
+          tracklist = "nano tracklist.txt";
         };
     };
   };
