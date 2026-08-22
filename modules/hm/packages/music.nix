@@ -7,6 +7,7 @@
     eject                              # ejects the CD tray
     ffmpeg                             # converts audio and video
     flac                               # lossless audio encoder
+    glyr                               # finds album art
     libdiscid                          # MusicBrainz DiscID library
     libnotify                          # sends desktop notifications
     perlPackages.MusicBrainz # MusicBrainz API for abcde
