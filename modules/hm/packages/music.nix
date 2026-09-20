@@ -37,6 +37,9 @@
         copy = false;
         move = false;
         resume = true;
+        
+        quiet = true;
+        quiet_fallback = "asis";
       };
       
       # --- PLUGIN CONFIGURATION ---
@@ -72,8 +75,7 @@
       # 3. Calculate ReplayGain (volume normalization) and save it as a tag
       replaygain = {
         auto = true;
-        backend = "command";
-        command = "rsgain"; # Uses the rsgain package from your home.packages list
+        backend = "ffmpeg";
       };
       
       # 4. MusicBrainz Sync: Keeps metadata up-to-date if the database changes
