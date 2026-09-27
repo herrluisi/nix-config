@@ -25,7 +25,7 @@ let
       DURATION=$((END_TIME - START_TIME))
       
       # 4. Album-Infos aus den frischen FLAC-Dateien auslesen
-      MUSIC_DIR="/home/dein_benutzer/Musik"
+      MUSIC_DIR="/home/uisl/music"
       
       # Findet die zuletzt erstellte FLAC-Datei
       LATEST_FLAC=$(find "$MUSIC_DIR" -type f -name "*.flac" -printf "%T@ %p\n" | sort -n | tail -1 | cut -d' ' -f2-)
