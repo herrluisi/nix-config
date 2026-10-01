@@ -43,8 +43,8 @@
         move = false; 
         resume = true;
         
-        quiet = true;
-        quiet_fallback = "asis";
+        quiet = false;
+        quiet_fallback = "skip";
       };
       
       # --- PLUGIN CONFIGURATION ---

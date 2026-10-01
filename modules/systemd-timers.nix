@@ -27,8 +27,30 @@ let
       
       ALBUM=$(metaflac --show-tag=ALBUM "$LATEST_FLAC" | head -n 1 | sed 's/^[^=]*=//')
       ARTIST=$(metaflac --show-tag=ARTIST "$LATEST_FLAC" | head -n 1 | sed 's/^[^=]*=//')
+      
+      # Konvertiert ARTIST und ALBUM in Kleinbuchstaben und sucht nach "unknown"
+      if [[ "''${ARTIST,,}" == *"unknown"* ]] || [[ "''${ALBUM,,}" == *"unknown"* ]]; then
+          
+          DUMMY_DIR="$HOME/Downloads/temp_rip_$(date +%Y%m%d_%H%M%S)"
+          mkdir -p "$DUMMY_DIR"
+          
+          # Verschiebt alle FLACs sofort aus der sauberen Bibliothek in den Dummy-Ordner
+          mv "$ALBUM_DIR"/*.flac "$DUMMY_DIR"/
+          
+          # Räumt die unschönen "unknown_artist"-Ordner direkt wieder weg
+          rm -rf "$ALBUM_DIR"
+          rmdir "$(dirname "$ALBUM_DIR")" 2>/dev/null || true
+          
+          ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i dialog-warning "Unbekannte CD" "CD wurde gerippt, aber nicht erkannt!\n\nVerschoben nach:\n$DUMMY_DIR\n\nFühre aus:\nbeet import -s -m $DUMMY_DIR" -t 15000 || true
+          
+          eject /dev/sr0 || true
+          exit 0
+      fi
+      # =================================================================
+      
       TRACKS=$(find "$ALBUM_DIR" -type f -name "*.flac" | wc -l)
       
+      # CSV Eintrag
       CSV_FILE="$LOGDIR/rip_times.csv"
       if [ ! -f "$CSV_FILE" ]; then
         echo "Datum,Künstler,Album,Tracks,Dauer_Sekunden" > "$CSV_FILE"
