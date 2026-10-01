@@ -25,17 +25,22 @@
       directory = "/home/uisl/Documents/music";
       library = "/home/uisl/.config/beets/musiclibrary.blb";
       
-      # Added fetchart, embedart, replaygain, and mbsync for maximum metadata
       plugins = "lyrics lastgenre scrub chroma fetchart embedart replaygain mbsync";
       
       match = {
         max_rec_thresh = 2.0;
       };
+
+      paths = {
+        default = "$albumartist/$album/$track $title";
+        singleton = "Mixes/$artist/$artist - $title";
+        comp = "Sampler/$album/$track $title";
+      };
       
       import = {
         write = true;
         copy = false;
-        move = false;
+        move = false; 
         resume = true;
         
         quiet = true;

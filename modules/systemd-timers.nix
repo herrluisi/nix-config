@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 let
   autoripScript = pkgs.writeShellScriptBin "autorip-script" ''
-    # Nix-Magie: Wir füllen den leeren Systemd-PATH explizit mit eject und hostname (nettools) auf
-    export PATH="${pkgs.lib.makeBinPath [ pkgs.eject pkgs.nettools ]}:$PATH"
+    export PATH="${pkgs.lib.makeBinPath [ pkgs.eject pkgs.nettools pkgs.curl pkgs.jq pkgs.flac pkgs.cdparanoia ]}:$PATH"
 
     LOGDIR="$HOME/.abcde"
     LOGFILE="$LOGDIR/autorip.log"
@@ -12,55 +11,86 @@ let
     echo -e "\n========================================================" >> "$LOGFILE"
     echo "Starte Auto-Rip Vorgang: $(date)" >> "$LOGFILE"
     
-    ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i media-optical "Audio-CD erkannt" "Der Rip-Vorgang startet..." || true
+    ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i media-optical "Audio-CD erkannt" "Suche in MusicBrainz..." || true
     
-    # 1. Stoppuhr START
     START_TIME=$(date +%s)
     
-    # 2. Der exklusive Rip-Vorgang
+    # VERSUCH 1: Der intelligente Rip über abcde
     if ${pkgs.abcde}/bin/abcde -N -d /dev/sr0 >> "$LOGFILE" 2>&1; then
       
-      # 3. Stoppuhr ENDE und Dauer berechnen
       END_TIME=$(date +%s)
       DURATION=$((END_TIME - START_TIME))
+      MUSIC_DIR="/home/uisl/Documents/music"
       
-      # 4. Album-Infos aus den frischen FLAC-Dateien auslesen
-      MUSIC_DIR="/home/uisl/music"
-      
-      # Findet die zuletzt erstellte FLAC-Datei
       LATEST_FLAC=$(find "$MUSIC_DIR" -type f -name "*.flac" -printf "%T@ %p\n" | sort -n | tail -1 | cut -d' ' -f2-)
       ALBUM_DIR=$(dirname "$LATEST_FLAC")
       
-      # Metadaten auslesen (löscht alles vor dem ersten "=" weg und nimmt nur die erste Zeile)
-      ALBUM=$(${pkgs.flac}/bin/metaflac --show-tag=ALBUM "$LATEST_FLAC" | head -n 1 | sed 's/^[^=]*=//')
-      ARTIST=$(${pkgs.flac}/bin/metaflac --show-tag=ARTIST "$LATEST_FLAC" | head -n 1 | sed 's/^[^=]*=//')
-      
-      # Zählt, wie viele .flac Dateien in dem neuen Album-Ordner liegen
+      ALBUM=$(metaflac --show-tag=ALBUM "$LATEST_FLAC" | head -n 1 | sed 's/^[^=]*=//')
+      ARTIST=$(metaflac --show-tag=ARTIST "$LATEST_FLAC" | head -n 1 | sed 's/^[^=]*=//')
       TRACKS=$(find "$ALBUM_DIR" -type f -name "*.flac" | wc -l)
       
-      # 5. Daten in die CSV-Datei schreiben
       CSV_FILE="$LOGDIR/rip_times.csv"
-      
-      # Falls die CSV noch nicht existiert, erstellen wir schnell die Kopfzeile
       if [ ! -f "$CSV_FILE" ]; then
         echo "Datum,Künstler,Album,Tracks,Dauer_Sekunden" > "$CSV_FILE"
       fi
-      
-      # Hängt den neuen Datensatz in die nächste freie Zeile an
       echo "$(date +%Y-%m-%d),\"$ARTIST\",\"$ALBUM\",$TRACKS,$DURATION" >> "$CSV_FILE"
       
-      # Wir können die neuen Variablen sogar in der Desktop-Benachrichtigung nutzen!
-      ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i audio-x-generic "Rip abgeschlossen" "$ALBUM ($TRACKS Tracks)\nDauer: $DURATION Sekunden." || true
+      ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i audio-x-generic "Rip abgeschlossen" "$ALBUM ($TRACKS Tracks)\nLade nun Songtexte über LRCLIB herunter..." || true
       
-      # === HIER WÜRDE NUN DEIN RCLONE UPLOAD STARTEN ===
+      # LRCLIB LYRICS DOWNLOAD
+      cd "$ALBUM_DIR"
+      for file in *.flac; do
+          if [ -f "''${file%.flac}.lrc" ]; then continue; fi
+          
+          TRACK_TITLE=$(metaflac --show-tag=TITLE "$file" | head -n 1 | sed 's/^[^=]*=//')
+          TRACK_ARTIST=$(metaflac --show-tag=ARTIST "$file" | head -n 1 | sed 's/^[^=]*=//')
+          
+          if [ -z "$TRACK_TITLE" ] || [ -z "$TRACK_ARTIST" ]; then continue; fi
+          
+          RESPONSE=$(curl -s -G --data-urlencode "artist_name=$TRACK_ARTIST" --data-urlencode "track_name=$TRACK_TITLE" --data-urlencode "album_name=$ALBUM" "https://lrclib.net/api/get")
+          SYNCED=$(echo "$RESPONSE" | jq -r '.syncedLyrics | select(. != null)')
+          
+          if [ -n "$SYNCED" ]; then
+              echo "$SYNCED" > "''${file%.flac}.lrc"
+          fi
+          sleep 1
+      done
       
+      ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i text-x-generic "Lyrics fertig" "Texte für '$ALBUM' geladen." || true
+
+    # VERSUCH 2: Der "Dumb Rip" Fallback (Wenn abcde die CD nicht kennt)
     else
-      echo "Fehler aufgetreten: $(date)" >> "$LOGFILE"
-      ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i dialog-error "Fehler beim Rippen" "Vorgang abgebrochen. Details siehe: $LOGFILE" || true
+      echo "abcde fehlgeschlagen (unbekannte CD). Starte RAW-Rip Fallback..." >> "$LOGFILE"
+      ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i dialog-warning "Unbekannte CD" "MusicBrainz kennt die CD nicht.\nStarte RAW-Rip für Beets Akustik-Scan..." || true
+      
+      # Eindeutigen Dummy-Ordner mit Zeitstempel erstellen
+      DUMMY_DIR="$HOME/Downloads/temp_rip_$(date +%Y%m%d_%H%M%S)"
+      mkdir -p "$DUMMY_DIR"
+      cd "$DUMMY_DIR"
+      
+      # Komplett roh auslesen
+      if cdparanoia -B -d /dev/sr0 >> "$LOGFILE" 2>&1; then
+        
+        # Direkt in FLAC umwandeln und WAVs löschen
+        for f in *.wav; do
+          if [ -f "$f" ]; then
+            flac -8 "$f" >> "$LOGFILE" 2>&1 && rm "$f"
+          fi
+        done
+        
+        # CD auswerfen
+        eject /dev/sr0 || true
+        
+        ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i audio-x-generic "RAW-Rip fertig" "Unbekannte CD liegt bereit in:\n$DUMMY_DIR\n\nFühre nun aus:\nbeet import -s -m $DUMMY_DIR" -t 15000 || true
+        
+      else
+        echo "Auch der RAW-Rip mit cdparanoia ist fehlgeschlagen." >> "$LOGFILE"
+        ${pkgs.libnotify}/bin/notify-send -a "MusicBrainz Ripper" -i dialog-error "Kritischer Fehler" "Die CD konnte nicht gelesen werden. Evtl. Kratzer oder Kopierschutz?" || true
+        eject /dev/sr0 || true
+      fi
     fi
   '';
 in
-
 {
   sops.secrets.nasa_key = {
     format = "yaml";
