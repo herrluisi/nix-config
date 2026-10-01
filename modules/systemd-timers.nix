@@ -148,7 +148,7 @@ in
       Type = "oneshot";
       ExecStart = "${autoripScript}/bin/autorip-script";
       Environment = "PATH=/run/current-system/sw/bin:/etc/profiles/per-user/%u/bin";
-      PassEnvironment = "/home/uisl/music_autogen_data";
+      PassEnvironment = "/home/uisl/music_autogen_data/";
     };
   };
 

@@ -25,10 +25,18 @@
       directory = "/home/uisl/Documents/music";
       library = "/home/uisl/.config/beets/musiclibrary.blb";
       
-      plugins = "lyrics lastgenre scrub chroma fetchart embedart replaygain mbsync";
-      
+      plugins = "lyrics lastgenre scrub chroma fetchart embedart replaygain mbsync musicbrainz info"; 
       match = {
         max_rec_thresh = 2.0;
+
+        strong_rec_thresh = 0.7;
+
+        distance_weights = {
+          source =  0.0;
+          artist = 0.0;
+          album = 0.0;
+          track_title = 0.0;
+        };
       };
 
       paths = {
@@ -53,7 +61,7 @@
         auto = true;
         fallback = "";
       };
-      
+
       lastgenre = {
         auto = true;
         fallback = "Unknown";
@@ -61,6 +69,10 @@
       };
       
       scrub = {
+        auto = true;
+      };
+
+      chroma = {
         auto = true;
       };
       
