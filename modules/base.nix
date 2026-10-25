@@ -1,9 +1,10 @@
 {
   imports = [
-    ./localisation.nix
-    ./user.nix
     ./graphics.nix
+    ./localisation.nix
     ./systemd-timers.nix
+    ./user.nix
+    ./virtualisation.nix
     ./nix
     ./boot
     ./network
