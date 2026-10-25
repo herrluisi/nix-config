@@ -163,7 +163,7 @@
           dc = "sudo docker compose";
           diffstr = "sh ${diffstr-path}";
           kali-start = "virsh -c qemu:///system start kali-linux";
-          kali-view = "virsh -c qemu:///system kali-linux";
+          kali-view = "virt-viewer -c qemu:///system kali-linux &";
           music = "cd /home/uisl/Documents/music";
           newdesktop = "new-desktop";
           nixdocs = "cd /home/uisl/Documents/programming/config_stuff/nix-docs";
