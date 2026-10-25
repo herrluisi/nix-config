@@ -162,7 +162,7 @@
           c = "clear";
           dc = "sudo docker compose";
           diffstr = "sh ${diffstr-path}";
-          kali-down = "vish -c qemu:///system shutdown kali-linux";
+          kali-down = "virsh -c qemu:///system shutdown kali-linux";
           kali-start = "virsh -c qemu:///system start kali-linux";
           kali-view = "virt-viewer -c qemu:///system kali-linux &";
           music = "cd /home/uisl/Documents/music";
