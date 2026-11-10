@@ -8,8 +8,5 @@
         mv tmp.png $out
       '';
     };
-
-    # enable password prompt for zfs
-    initrd.systemd.enable = true;
   };
 }
