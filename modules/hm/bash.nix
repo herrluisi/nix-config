@@ -158,6 +158,8 @@
         in
         {
           ".." = "cd ..";
+          arena = "cd /home/uisl/Documents/programming/projects/Arena35";
+          adminguide = "cd /home/uisl/Documents/programming/projects/AdminGuideOnNix";
           build-system = "sudo nixos-rebuild build --flake /etc/nixos";
           c = "clear";
           dc = "sudo docker compose";
