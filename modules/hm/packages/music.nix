@@ -163,5 +163,41 @@
     MAXPROCS=4 
     EJECTCD=y
     INTERACTIVE=n
+
+    # ======================================================================
+    # RETRY & ERROR HANDLING FÜR MUSICBRAINZ
+    # ======================================================================
+
+    # 1. Wrapper-Skript zur Laufzeit erzeugen, das bei "busy" bis zu 4x wartet
+    MB_WRAPPER="/tmp/abcde-mb-retry-wrapper.sh"
+    cat << 'EOF' > "$MB_WRAPPER"
+      #!/usr/bin/env bash
+      for attempt in 1 2 3 4; do
+          output=$(abcde-musicbrainz-tool "$@" 2>&1)
+          status=$?
+          if [ $status -eq 0 ]; then
+              echo "$output"
+              exit 0
+          fi
+          if echo "$output" | grep -qi "busy"; then
+              echo "MusicBrainz ist beschäftigt (Versuch $attempt/4). Warte 5 Sekunden..." >&2
+              sleep 5
+          else
+              echo "$output" >&2
+              exit $status
+          fi
+      done
+      echo "$output" >&2
+      exit 1
+      EOF
+    chmod +x "$MB_WRAPPER"
+    MUSICBRAINZ="$MB_WRAPPER"
+
+    # 2. Bei endgültigem Fehlerabbruch: Temporären Ordner aufräumen & CD auswerfen
+    trap 'if [ $? -ne 0 ]; then
+      echo "Abbruch wegen Fehler! Räume auf und werfe CD aus..." >&2
+      rm -rf "''${ABCDETEMPDIR}/abcde.''${CDDBDISCID}" 2>/dev/null
+      eject "''${CDROM:-/dev/sr0}"
+    fi' EXIT
   '';
 }
