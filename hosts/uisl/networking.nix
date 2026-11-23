@@ -15,6 +15,7 @@
         "hotspot"
         "zuhause"
         "laila"
+        "leon"
         #"luca_wlan"
         #"tankstelle"
       ];
