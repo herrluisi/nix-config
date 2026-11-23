@@ -17,6 +17,12 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    deadlock-mod-manager = {
+      url = "https://github.com/deadlock-mod-manager/deadlock-mod-manager/releases/latest/download/deadlock-mod-manager-cef.flatpak";
+      flake = false;
+    };
   };
 
   outputs =
@@ -70,6 +76,8 @@
           ./hosts/uisl/configuration.nix
           ./modules/base.nix
           
+          inputs.nix-flatpak.nixosModules.nix-flatpak
+
           sops-nix.nixosModules.sops
           nixos-facter-modules.nixosModules.facter
           {
